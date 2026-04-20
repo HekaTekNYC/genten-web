@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Genten — Splash</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="grid-bg.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="theme-switcher" role="tablist" aria-label="Color theme">
+      <button data-theme="" class="active">
+        <span class="swatch" style="background: #3ad4ff; color: #3ad4ff"></span
+        >Midnight
+      </button>
+      <button data-theme="auroral">
+        <span class="swatch" style="background: #6ee7c8; color: #6ee7c8"></span
+        >Auroral
+      </button>
+      <button data-theme="solstice">
+        <span class="swatch" style="background: #d99a4a; color: #d99a4a"></span
+        >Solstice
+      </button>
+      <button data-theme="helios">
+        <span class="swatch" style="background: #f5d547; color: #f5d547"></span
+        >Helios
+      </button>
+      <button data-theme="terracotta">
+        <span class="swatch" style="background: #c2542e; color: #c2542e"></span
+        >Terracotta
+      </button>
+      <button data-theme="cassini">
+        <span class="swatch" style="background: #0f2340; color: #0f2340"></span
+        >Cassini
+      </button>
+      <span class="tw-div"></span>
+      <button data-theme="cosmic">
+        <span class="swatch" style="background: #a78bff; color: #a78bff"></span
+        >Cosmic
+      </button>
+      <button data-theme="nebula">
+        <span class="swatch" style="background: #f04bb8; color: #f04bb8"></span
+        >Nebula
+      </button>
+      <button data-theme="twilight">
+        <span class="swatch" style="background: #c7b5ff; color: #c7b5ff"></span
+        >Twilight
+      </button>
+      <button data-theme="uv">
+        <span class="swatch" style="background: #b026ff; color: #b026ff"></span
+        >UV
+      </button>
+      <button data-theme="royal">
+        <span class="swatch" style="background: #8a4fc8; color: #8a4fc8"></span
+        >Royal
+      </button>
+    </div>
+
+    <div class="stage genten-stage">
+      <!-- Saturn with rings, upper right -->
+      <div
+        class="saturn"
+        aria-hidden="true"
+        style="
+          opacity: var(--saturn-opacity, 0.9);
+          transform: scale(var(--saturn-scale, 1));
+          transform-origin: top right;
+        "
+      >
+        <svg viewBox="0 0 800 800" fill="none">
+          <defs>
+            <radialGradient id="saturnBody" cx="0.42" cy="0.38" r="0.62">
+              <stop offset="0%" stop-color="var(--warm)" stop-opacity="0.95" />
+              <stop
+                offset="55%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0.55"
+              />
+              <stop
+                offset="100%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0.05"
+              />
+            </radialGradient>
+            <radialGradient id="saturnShade" cx="0.7" cy="0.65" r="0.6">
+              <stop offset="0%" stop-color="#000" stop-opacity="0.55" />
+              <stop offset="100%" stop-color="#000" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="saturnGlow" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0%" stop-color="var(--warm)" stop-opacity="0.35" />
+              <stop
+                offset="60%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0.12"
+              />
+              <stop
+                offset="100%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0"
+              />
+            </radialGradient>
+            <linearGradient id="ringGrad" x1="0" x2="1" y1="0" y2="0">
+              <stop
+                offset="0%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0"
+              />
+              <stop offset="30%" stop-color="var(--warm)" stop-opacity="0.75" />
+              <stop
+                offset="55%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0.85"
+              />
+              <stop offset="78%" stop-color="var(--warm)" stop-opacity="0.55" />
+              <stop
+                offset="100%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0"
+              />
+            </linearGradient>
+            <clipPath id="ringBack">
+              <rect x="0" y="0" width="800" height="400" />
+            </clipPath>
+            <clipPath id="ringFront">
+              <rect x="0" y="400" width="800" height="400" />
+            </clipPath>
+          </defs>
+
+          <!-- soft atmospheric glow behind everything -->
+          <circle cx="400" cy="400" r="320" fill="url(#saturnGlow)" />
+
+          <!-- rings only, no planet body -->
+          <g
+            style="
+              transform: rotate(var(--ring-tilt, -22deg));
+              transform-origin: 400px 400px;
+            "
+          >
+            <ellipse
+              cx="400"
+              cy="400"
+              rx="340"
+              ry="70"
+              stroke="url(#ringGrad)"
+              stroke-width="3"
+              fill="none"
+            />
+            <ellipse
+              cx="400"
+              cy="400"
+              rx="305"
+              ry="58"
+              stroke="url(#ringGrad)"
+              stroke-width="1.8"
+              fill="none"
+              opacity="0.75"
+            />
+            <ellipse
+              cx="400"
+              cy="400"
+              rx="275"
+              ry="46"
+              stroke="url(#ringGrad)"
+              stroke-width="1.2"
+              fill="none"
+              opacity="0.55"
+            />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Tweaks panel -->
+      <div id="tweaks-panel" style="display: none">
+        <div class="tw-head">
+          <span>Tweaks</span>
+          <span class="tw-close" id="tw-close">×</span>
+        </div>
+        <div class="tw-body">
+          <label
+            >Saturn size
+            <input
+              type="range"
+              id="tw-saturn-scale"
+              min="0.4"
+              max="1.8"
+              step="0.05"
+            />
+            <span class="tw-val" id="tw-saturn-scale-v"></span>
+          </label>
+          <label
+            >Saturn opacity
+            <input
+              type="range"
+              id="tw-saturn-opacity"
+              min="0"
+              max="1"
+              step="0.05"
+            />
+            <span class="tw-val" id="tw-saturn-opacity-v"></span>
+          </label>
+          <label
+            >Saturn position X
+            <input type="range" id="tw-saturn-x" min="-50" max="20" step="1" />
+            <span class="tw-val" id="tw-saturn-x-v"></span>
+          </label>
+          <label
+            >Saturn position Y
+            <input type="range" id="tw-saturn-y" min="-50" max="20" step="1" />
+            <span class="tw-val" id="tw-saturn-y-v"></span>
+          </label>
+          <label
+            >Ring tilt
+            <input
+              type="range"
+              id="tw-saturn-tilt"
+              min="-45"
+              max="10"
+              step="1"
+            />
+            <span class="tw-val" id="tw-saturn-tilt-v"></span>
+          </label>
+          <label
+            >Grid density (px)
+            <input type="range" id="tw-grid-size" min="14" max="48" step="2" />
+            <span class="tw-val" id="tw-grid-size-v"></span>
+          </label>
+          <label
+            >Grid glow
+            <input type="range" id="tw-grid-glow" min="0" max="1" step="0.05" />
+            <span class="tw-val" id="tw-grid-glow-v"></span>
+          </label>
+          <label
+            >Light rays
+            <input type="range" id="tw-rays" min="0" max="1" step="0.05" />
+            <span class="tw-val" id="tw-rays-v"></span>
+          </label>
+          <label
+            >Headline text
+            <input type="text" id="tw-headline" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Light rays from above -->
+      <svg
+        class="rays"
+        viewBox="0 0 1400 800"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="ray" x1="0.5" y1="0" x2="0.5" y2="1">
+            <stop
+              offset="0%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0.38"
+            />
+            <stop
+              offset="40%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0.18"
+            />
+            <stop
+              offset="80%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0.04"
+            />
+            <stop
+              offset="100%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0"
+            />
+          </linearGradient>
+          <radialGradient id="raySource" cx="0.5" cy="0" r="0.35">
+            <stop
+              offset="0%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0.55"
+            />
+            <stop
+              offset="100%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0"
+            />
+          </radialGradient>
+          <filter id="rayBlur"><feGaussianBlur stdDeviation="22" /></filter>
+        </defs>
+        <!-- top-of-sky glow source -->
+        <rect x="0" y="0" width="1400" height="400" fill="url(#raySource)" />
+        <!-- broad beam fanning down and outward -->
+        <g filter="url(#rayBlur)">
+          <polygon
+            points="700,-40 380,820 1020,820"
+            fill="url(#ray)"
+            opacity="0.75"
+          />
+          <polygon points="700,-40 560,820 840,820" fill="url(#ray)" />
+          <polygon
+            points="700,-40 660,820 740,820"
+            fill="url(#ray)"
+            opacity="0.9"
+          />
+        </g>
+      </svg>
+
+      <!-- Grid floor (from grid-bg.css) -->
+      <div class="genten-horizon"></div>
+      <div class="genten-floor">
+        <div class="genten-floor-grid"></div>
+      </div>
+
+      <nav>
+        <div class="brand">
+          <span class="brand-mark">
+            <svg
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-label="Genten"
+            >
+              <title>Saturn</title>
+              <path
+                fill="currentColor"
+                d="M19.039 11.459c.001.015.022.244.03.407.006.113 0 .29 0 .3.003 0 .029.023.03.024 1.428 1.17 2.943 2.767 3.204 3.94.073.325.056.618-.072.868-.152.293-.439.503-.834.638-2.046.7-6.925-.642-10.907-2.609-2.845-1.406-5.342-3.081-7.032-4.719-1.57-1.523-1.995-2.71-1.59-3.427.155-.271.42-.472.776-.609 1.299-.507 3.788-.152 6.239.579-1.16.866-1.968 2.034-2.342 3.202l-.001.007a.051.051 0 0 1-.001.006c-.115 1.07 1.434 2.47 3 3.25-.002-.006.084.032.084.026-.002-.006-.015-.109-.017-.113-.366-2.66 1.648-6.64 3.765-7.513.136-.056.254-.09.27-.095l-.273-.027c-.074-.006-.148-.013-.228-.015a7.464 7.464 0 0 0-.272-.01 6.443 6.443 0 0 0-3.4.892C5.378 5.057 2.383 4.892 1.13 5.31c-.497.167-.833.418-1 .751-.174.35-.175.79-.002 1.306.57 1.704 3.058 4.032 6.211 6.099.457 2.407 2.615 4.875 5.703 5.204l.142.015a.278.278 0 0 1 .05 0 6.618 6.618 0 0 0-.173-.132c-.955-.736-1.813-1.949-2.107-3l.185.093.143.07c4.985 2.465 10.215 3.72 12.53 2.947.519-.174.9-.418 1.075-.768.167-.335.139-.78-.029-1.278-.436-1.3-2.304-3.284-4.675-5.052a5.003 5.003 0 0 0-.145-.107"
+              />
+            </svg>
+          </span>
+          Genten
+        </div>
+        <a class="nav-cta" href="#waitlist">
+          Join Waitlist
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <path
+              d="M2 8L8 2M8 2H3.5M8 2V6.5"
+              stroke="currentColor"
+              stroke-width="1.2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </a>
+      </nav>
+
+      <section class="hero">
+        <div class="eyebrow">
+          <span class="pulse"></span>
+          <span>Now entering orbit · v1.0</span>
+        </div>
+        <h1>Command the <em>origin</em><br />of every signal.</h1>
+        <p class="sub">
+          Genten is the observability platform that maps cause to effect across
+          your systems — with the clarity of a telescope and the precision of a
+          ruler.
+        </p>
+        <div class="cta-row" id="waitlist">
+          <form class="waitlist-form" onsubmit="handleWaitlistSubmit(event)">
+            <div class="waitlist-row">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                required
+                class="waitlist-input"
+                id="waitlist-email"
+              />
+              <button type="submit" class="btn btn-primary">
+                Join Waitlist
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M2 10L10 2M10 2H4.5M10 2V7.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
+            <select
+              class="waitlist-input"
+              id="waitlist-source"
+              required
+            >
+              <option value="" disabled selected>How did you hear about us?</option>
+              <option value="Twitter/X">Twitter/X</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Google Search">Google Search</option>
+              <option value="Friend/Colleague">Friend/Colleague</option>
+              <option value="Reddit">Reddit</option>
+              <option value="The Multiverse">The Multiverse</option>
+              <option value="Discord">Discord</option>
+              <option value="Other">Other</option>
+            </select>
+          </form>
+        </div>
+        <p class="waitlist-hint">
+          Join the waitlist to get early access to Genten
+        </p>
+      </section>
+
+      <div class="dashboard-wrap">
+        <div class="dashboard">
+          <div class="db-top">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="db-url">genten.app/observatory/production</span>
+          </div>
+          <div class="db-body">
+            <aside class="db-sidebar">
+              <div class="db-brand">
+                <span class="mini-mark">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="4" fill="var(--warm)" />
+                    <ellipse
+                      cx="10"
+                      cy="10"
+                      rx="9"
+                      ry="2.2"
+                      stroke="var(--warm)"
+                      stroke-width="0.8"
+                      fill="none"
+                      transform="rotate(-20 10 10)"
+                    />
+                  </svg>
+                </span>
+                Genten
+              </div>
+              <div class="db-section">Observatory</div>
+              <div class="db-item active">
+                <span class="ic"
+                  ><svg viewBox="0 0 10 10" fill="none">
+                    <circle
+                      cx="5"
+                      cy="5"
+                      r="3"
+                      stroke="white"
+                      stroke-width="1"
+                    />
+                    <circle cx="5" cy="5" r="1" fill="white" /></svg
+                ></span>
+                Overview
+              </div>
+              <div class="db-item"><span class="ic"></span>Signals</div>
+              <div class="db-item"><span class="ic"></span>Traces</div>
+              <div class="db-item"><span class="ic"></span>Incidents</div>
+              <div class="db-section">Systems</div>
+              <div class="db-item"><span class="ic"></span>Services</div>
+              <div class="db-item"><span class="ic"></span>Dependencies</div>
+              <div class="db-item"><span class="ic"></span>Runbooks</div>
+              <div class="db-section">Account</div>
+              <div class="db-item"><span class="ic"></span>Team</div>
+              <div class="db-item"><span class="ic"></span>Settings</div>
+            </aside>
+            <main class="db-main">
+              <div class="db-head">
+                <div>
+                  <div class="db-title">Production Observatory</div>
+                  <div class="db-sub">
+                    Live telemetry across 14 services · last 6 hours
+                  </div>
+                </div>
+                <div class="db-tabs">
+                  <div class="db-tab active">1H</div>
+                  <div class="db-tab">6H</div>
+                  <div class="db-tab">24H</div>
+                  <div class="db-tab">7D</div>
+                </div>
+              </div>
+
+              <div class="kpis">
+                <div class="kpi">
+                  <div class="kpi-label">Requests / sec</div>
+                  <div class="kpi-val">12,847</div>
+                  <div class="kpi-delta">▲ 4.2%</div>
+                  <svg class="spark" viewBox="0 0 48 22" fill="none">
+                    <polyline
+                      points="0,14 6,12 12,15 18,9 24,11 30,6 36,8 42,4 48,7"
+                      stroke="var(--accent)"
+                      stroke-width="1.2"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+                <div class="kpi">
+                  <div class="kpi-label">p95 latency</div>
+                  <div class="kpi-val">
+                    84<span style="font-size: 14px; color: var(--muted)"
+                      >ms</span
+                    >
+                  </div>
+                  <div class="kpi-delta neg">▼ 12ms</div>
+                  <svg class="spark" viewBox="0 0 48 22" fill="none">
+                    <polyline
+                      points="0,6 6,9 12,7 18,12 24,10 30,14 36,12 42,16 48,15"
+                      stroke="var(--warm)"
+                      stroke-width="1.2"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+                <div class="kpi">
+                  <div class="kpi-label">Error rate</div>
+                  <div class="kpi-val">
+                    0.04<span style="font-size: 14px; color: var(--muted)"
+                      >%</span
+                    >
+                  </div>
+                  <div class="kpi-delta">▲ stable</div>
+                  <svg class="spark" viewBox="0 0 48 22" fill="none">
+                    <polyline
+                      points="0,18 6,17 12,18 18,16 24,17 30,16 36,18 42,17 48,16"
+                      stroke="#6a7a96"
+                      stroke-width="1.2"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="panels">
+                <div class="panel">
+                  <h3>Signal flow <span class="tag">LIVE</span></h3>
+                  <svg class="chart" viewBox="0 0 500 150" fill="none">
+                    <defs>
+                      <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+                        <stop
+                          offset="0%"
+                          stop-color="var(--accent)"
+                          stop-opacity="0.4"
+                        />
+                        <stop
+                          offset="100%"
+                          stop-color="var(--accent)"
+                          stop-opacity="0"
+                        />
+                      </linearGradient>
+                    </defs>
+                    <g stroke="var(--line)" stroke-width="0.5">
+                      <line x1="0" y1="30" x2="500" y2="30" />
+                      <line x1="0" y1="70" x2="500" y2="70" />
+                      <line x1="0" y1="110" x2="500" y2="110" />
+                    </g>
+                    <path
+                      d="M0,90 L25,80 L50,85 L75,70 L100,75 L125,55 L150,60 L175,45 L200,50 L225,40 L250,55 L275,35 L300,50 L325,30 L350,45 L375,25 L400,40 L425,28 L450,38 L475,22 L500,30 L500,150 L0,150 Z"
+                      fill="url(#area)"
+                    />
+                    <path
+                      d="M0,90 L25,80 L50,85 L75,70 L100,75 L125,55 L150,60 L175,45 L200,50 L225,40 L250,55 L275,35 L300,50 L325,30 L350,45 L375,25 L400,40 L425,28 L450,38 L475,22 L500,30"
+                      stroke="var(--accent)"
+                      stroke-width="1.4"
+                      fill="none"
+                    />
+                    <path
+                      d="M0,115 L25,110 L50,112 L75,108 L100,110 L125,100 L150,105 L175,95 L200,98 L225,92 L250,100 L275,88 L300,95 L325,82 L350,90 L375,78 L400,85 L425,80 L450,86 L475,76 L500,82"
+                      stroke="var(--warm)"
+                      stroke-width="1"
+                      fill="none"
+                      opacity="0.7"
+                      stroke-dasharray="2 2"
+                    />
+                    <line
+                      x1="400"
+                      y1="10"
+                      x2="400"
+                      y2="140"
+                      stroke="color-mix(in srgb, var(--accent) 60%, transparent)"
+                      stroke-width="0.8"
+                      stroke-dasharray="2 3"
+                    />
+                    <circle cx="400" cy="40" r="3" fill="var(--accent-soft)" />
+                    <circle
+                      cx="400"
+                      cy="40"
+                      r="6"
+                      fill="var(--accent)"
+                      opacity="0.3"
+                    />
+                  </svg>
+                </div>
+                <div class="panel">
+                  <h3>Recent events <span class="tag">6</span></h3>
+                  <div style="margin-top: 10px">
+                    <div class="feed-row">
+                      <span class="bullet"></span
+                      ><span class="who">api-gateway</span
+                      ><span class="what">scaled to 18 pods</span
+                      ><span class="when">00:02</span>
+                    </div>
+                    <div class="feed-row">
+                      <span class="bullet warm"></span
+                      ><span class="who">auth-svc</span
+                      ><span class="what">deploy v2.14.3</span
+                      ><span class="when">00:11</span>
+                    </div>
+                    <div class="feed-row">
+                      <span class="bullet"></span><span class="who">ingest</span
+                      ><span class="what">throughput +18%</span
+                      ><span class="when">00:24</span>
+                    </div>
+                    <div class="feed-row">
+                      <span class="bullet"></span
+                      ><span class="who">postgres</span
+                      ><span class="what">replica lag 12ms</span
+                      ><span class="when">00:33</span>
+                    </div>
+                    <div class="feed-row">
+                      <span class="bullet warm"></span
+                      ><span class="who">cdn-edge</span
+                      ><span class="what">cache warmup complete</span
+                      ><span class="when">00:47</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-mark">
+        <span>GENTEN · OBSERVATORY SYS</span>
+        <div class="ticks">
+          <span>SIGNAL</span>
+          <span class="tick live"></span>
+          <span class="tick live"></span>
+          <span class="tick live"></span>
+          <span class="tick"></span>
+          <span class="tick"></span>
+        </div>
+        <span>© 2026 HekaTek LLC</span>
+      </div>
+    </div>
+
+    <!-- Waitlist confirmation modal -->
+    <div class="waitlist-modal-overlay" id="waitlist-modal-overlay" onclick="closeWaitlistModal(event)">
+      <div class="waitlist-modal" onclick="event.stopPropagation()">
+        <button class="waitlist-modal-close" onclick="closeWaitlistModal()" aria-label="Close">×</button>
+        <div class="waitlist-modal-title">You're in.</div>
+        <div class="waitlist-modal-subtitle">We'll reach out when Genten is ready. One email. No spam.</div>
+      </div>
+    </div>
+
+    <script>
+      // Waitlist form handler
+      async function handleWaitlistSubmit(event) {
+        event.preventDefault()
+        const form = event.target
+        const emailInput = form.querySelector('input[type="email"]')
+        const sourceSelect = form.querySelector('#waitlist-source')
+        const submitButton = form.querySelector('button[type="submit"]')
+        const email = emailInput.value.trim()
+        const source = sourceSelect.value
+
+        if (!email || !source) return
+
+        // Disable button during submission
+        submitButton.disabled = true
+        submitButton.textContent = 'Joining...'
+
+        try {
+          // Send to Google Sheets
+          const response = await fetch('https://script.google.com/macros/s/AKfycbz-qi5DP4BYKm3uA1y817ENm38uocgIMT3xtcmIFkFVzxVewFJ0a1vw_6jD7eCobVfo/exec', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: email,
+              source: source
+            })
+          })
+
+          // Show confirmation modal
+          const modal = document.getElementById('waitlist-modal-overlay')
+          modal.classList.add('show')
+
+          // Clear the form inputs
+          emailInput.value = ''
+          sourceSelect.selectedIndex = 0
+
+        } catch (error) {
+          console.error('Waitlist signup error:', error)
+          alert('Something went wrong. Please try again.')
+        } finally {
+          // Re-enable button
+          submitButton.disabled = false
+          submitButton.innerHTML = `Join Waitlist <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`
+        }
+      }
+
+      // Close waitlist modal
+      function closeWaitlistModal(event) {
+        // If event is provided and it's not from clicking the overlay, don't close
+        if (event && event.target.id !== 'waitlist-modal-overlay' && event.target.className !== 'waitlist-modal-close') {
+          return
+        }
+        const modal = document.getElementById('waitlist-modal-overlay')
+        modal.classList.remove('show')
+      }
+
+      // Tweakable defaults — host rewrites this block on save
+      const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/ {
+        saturnScale: 1,
+        saturnOpacity: 0.25,
+        saturnX: 0,
+        saturnY: -2,
+        saturnTilt: -15,
+        gridSize: 22,
+        gridGlow: 1,
+        rays: 0.5,
+        headline: "Command the <em>origin</em><br/>of every signal.",
+      } /*EDITMODE-END*/
+
+      const root = document.documentElement
+
+      function applyTweaks(t) {
+        root.style.setProperty("--saturn-scale", t.saturnScale)
+        root.style.setProperty("--saturn-opacity", t.saturnOpacity)
+        root.style.setProperty("--saturn-x", t.saturnX)
+        root.style.setProperty("--saturn-y", t.saturnY)
+        root.style.setProperty("--ring-tilt", t.saturnTilt + "deg")
+        root.style.setProperty("--grid-size", t.gridSize + "px")
+        root.style.setProperty("--grid-glow", t.gridGlow)
+        root.style.setProperty("--rays-opacity", t.rays)
+        const h1 = document.querySelector(".hero h1")
+        if (h1 && h1.innerHTML !== t.headline) h1.innerHTML = t.headline
+      }
+
+      const tweaks = {...TWEAK_DEFAULTS}
+      applyTweaks(tweaks)
+
+      // theme switcher (existing)
+      const buttons = document.querySelectorAll(".theme-switcher button")
+      const saved = localStorage.getItem("genten-theme") || ""
+      if (saved) root.setAttribute("data-theme", saved)
+      buttons.forEach(b => {
+        if ((b.getAttribute("data-theme") || "") === saved) {
+          buttons.forEach(x => x.classList.remove("active"))
+          b.classList.add("active")
+        }
+        b.addEventListener("click", () => {
+          const t = b.getAttribute("data-theme") || ""
+          if (t) root.setAttribute("data-theme", t)
+          else root.removeAttribute("data-theme")
+          localStorage.setItem("genten-theme", t)
+          buttons.forEach(x => x.classList.remove("active"))
+          b.classList.add("active")
+        })
+      })
+
+      // Tweaks panel wiring
+      const panel = document.getElementById("tweaks-panel")
+      const fields = [
+        {
+          id: "tw-saturn-scale",
+          key: "saturnScale",
+          fmt: v => (+v).toFixed(2) + "×",
+        },
+        {
+          id: "tw-saturn-opacity",
+          key: "saturnOpacity",
+          fmt: v => (+v).toFixed(2),
+        },
+        {id: "tw-saturn-x", key: "saturnX", fmt: v => v + "vw"},
+        {id: "tw-saturn-y", key: "saturnY", fmt: v => v + "vw"},
+        {id: "tw-saturn-tilt", key: "saturnTilt", fmt: v => v + "°"},
+        {id: "tw-grid-size", key: "gridSize", fmt: v => v + "px"},
+        {id: "tw-grid-glow", key: "gridGlow", fmt: v => (+v).toFixed(2)},
+        {id: "tw-rays", key: "rays", fmt: v => (+v).toFixed(2)},
+      ]
+
+      function syncInputsFromState() {
+        for (const f of fields) {
+          const el = document.getElementById(f.id)
+          const vl = document.getElementById(f.id + "-v")
+          if (!el) continue
+          el.value = tweaks[f.key]
+          if (vl) vl.textContent = f.fmt(tweaks[f.key])
+        }
+        const h = document.getElementById("tw-headline")
+        if (h) h.value = tweaks.headline
+      }
+      syncInputsFromState()
+
+      for (const f of fields) {
+        const el = document.getElementById(f.id)
+        const vl = document.getElementById(f.id + "-v")
+        if (!el) continue
+        el.addEventListener("input", () => {
+          tweaks[f.key] = parseFloat(el.value)
+          if (vl) vl.textContent = f.fmt(tweaks[f.key])
+          applyTweaks(tweaks)
+          persist({[f.key]: tweaks[f.key]})
+        })
+      }
+      const htxt = document.getElementById("tw-headline")
+      if (htxt)
+        htxt.addEventListener("input", () => {
+          tweaks.headline = htxt.value
+          applyTweaks(tweaks)
+          persist({headline: tweaks.headline})
+        })
+
+      let persistTimer
+      function persist(edits) {
+        clearTimeout(persistTimer)
+        persistTimer = setTimeout(() => {
+          window.parent.postMessage({type: "__edit_mode_set_keys", edits}, "*")
+        }, 200)
+      }
+
+      document.getElementById("tw-close").addEventListener("click", () => {
+        panel.style.display = "none"
+      })
+
+      // Edit-mode protocol
+      window.addEventListener("message", ev => {
+        const d = ev.data
+        if (!d || typeof d !== "object") return
+        if (d.type === "__activate_edit_mode") {
+          panel.style.display = "block"
+        } else if (d.type === "__deactivate_edit_mode") {
+          panel.style.display = "none"
+        }
+      })
+      window.parent.postMessage({type: "__edit_mode_available"}, "*")
+    </script>
+  </body>
+</html>
