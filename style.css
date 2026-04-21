@@ -1258,84 +1258,80 @@ select.waitlist-input {
 
 /* Frameworks section */
 .frameworks {
-  padding: 60px 40px 20px;
+  padding: 60px 40px;
   position: relative;
   z-index: 1;
 }
 
 .frameworks-inner {
-  max-width: 780px;
+  max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  text-align: center;
 }
 
-.frameworks-label {
-  font-family: "Geist Mono", monospace;
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding-bottom: 12px;
-}
-
-.frameworks-list {
-  display: flex;
-  align-items: center;
-  gap: 48px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.framework-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.2s;
-}
-
-.framework-item:hover .framework-name {
-  color: var(--text);
-}
-
-.framework-icon {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-  opacity: 0.65;
-  color: var(--accent);
-}
-
-.framework-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  align-items: flex-start;
-}
-
-.framework-name {
-  font-size: 15px;
+.frameworks-heading {
+  font-size: 28px;
   font-weight: 600;
-  color: var(--muted);
-  letter-spacing: 0.01em;
-  transition: color 0.2s;
+  color: var(--text);
+  margin-bottom: 40px;
+  letter-spacing: -0.02em;
 }
 
-.framework-desc {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--muted);
-  opacity: 0.7;
-  font-family: "Geist Mono", monospace;
+.frameworks-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-.frameworks-divider {
-  width: 1px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.08);
+.framework-card {
+  background: rgba(10, 18, 38, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+
+.framework-card:hover {
+  border-color: var(--accent);
+  background: rgba(10, 18, 38, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.framework-card .framework-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+.framework-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.framework-card p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  font-weight: 300;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .frameworks-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 /* Features section */
