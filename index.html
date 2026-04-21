@@ -342,11 +342,31 @@
         </div>
         <h1>Command the <em>origin</em><br />of every signal.</h1>
         <p class="sub">
-          Genten monitors AI agent costs in real time, lets you kill runaway processes with one click, and blocks irreversible actions until you approve them. Self-hosted, open integrations.
+          Genten monitors AI agent costs in real time, lets you kill runaway
+          processes with one click, and blocks irreversible actions until you
+          approve them. Self-hosted, open integrations.
         </p>
         <div class="cta-row" id="waitlist">
           <form class="waitlist-form" onsubmit="handleWaitlistSubmit(event)">
             <div class="waitlist-row">
+              <div class="custom-select-wrapper">
+                <input type="hidden" id="waitlist-source" name="source" />
+                <div class="custom-select" id="custom-select">
+                  <div class="custom-select-trigger">
+                    <span class="custom-select-placeholder">How did you hear about us? (optional)</span>
+                  </div>
+                  <div class="custom-options">
+                    <div class="custom-option" data-value="Twitter/X">Twitter/X</div>
+                    <div class="custom-option" data-value="LinkedIn">LinkedIn</div>
+                    <div class="custom-option" data-value="Google Search">Google Search</div>
+                    <div class="custom-option" data-value="Friend/Colleague">Friend/Colleague</div>
+                    <div class="custom-option" data-value="Reddit">Reddit</div>
+                    <div class="custom-option" data-value="The Multiverse">The Multiverse</div>
+                    <div class="custom-option" data-value="Discord">Discord</div>
+                    <div class="custom-option" data-value="Other">Other</div>
+                  </div>
+                </div>
+              </div>
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -366,26 +386,6 @@
                 </svg>
               </button>
             </div>
-            <div class="waitlist-source-row">
-              <div class="custom-select-wrapper">
-                <input type="hidden" id="waitlist-source" name="source" />
-                <div class="custom-select" id="custom-select">
-                  <div class="custom-select-trigger">
-                    <span class="custom-select-placeholder">How did you hear about us? (optional)</span>
-                  </div>
-                  <div class="custom-options">
-                    <div class="custom-option" data-value="Twitter/X">Twitter/X</div>
-                    <div class="custom-option" data-value="LinkedIn">LinkedIn</div>
-                    <div class="custom-option" data-value="Google Search">Google Search</div>
-                    <div class="custom-option" data-value="Friend/Colleague">Friend/Colleague</div>
-                    <div class="custom-option" data-value="Reddit">Reddit</div>
-                    <div class="custom-option" data-value="The Multiverse">The Multiverse</div>
-                    <div class="custom-option" data-value="Discord">Discord</div>
-                    <div class="custom-option" data-value="Other">Other</div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </form>
         </div>
         <p class="waitlist-hint">
@@ -398,32 +398,96 @@
             <div class="frameworks-list">
               <div class="framework-item">
                 <svg class="framework-icon" viewBox="0 0 22 22" fill="none">
-                  <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                  <path d="M7 11c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                  <circle cx="11" cy="14" r="1.5" fill="currentColor"/>
+                  <circle
+                    cx="11"
+                    cy="11"
+                    r="8"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M7 11c0-2.2 1.8-4 4-4s4 1.8 4 4"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+                  <circle cx="11" cy="14" r="1.5" fill="currentColor" />
                 </svg>
                 <span>OpenClaw</span>
               </div>
               <div class="frameworks-divider"></div>
               <div class="framework-item">
                 <svg class="framework-icon" viewBox="0 0 22 22" fill="none">
-                  <rect x="3" y="8" width="5" height="6" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                  <rect x="14" y="8" width="5" height="6" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                  <path d="M8 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <rect
+                    x="3"
+                    y="8"
+                    width="5"
+                    height="6"
+                    rx="2"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <rect
+                    x="14"
+                    y="8"
+                    width="5"
+                    height="6"
+                    rx="2"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M8 11h6"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
                 </svg>
                 <span>n8n</span>
               </div>
               <div class="frameworks-divider"></div>
               <div class="framework-item">
                 <svg class="framework-icon" viewBox="0 0 22 22" fill="none">
-                  <path d="M4 11 C4 7.7 6.7 5 10 5 h2 C15.3 5 18 7.7 18 11 C18 14.3 15.3 17 12 17 h-2 C6.7 17 4 14.3 4 11Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                  <path d="M8 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  <circle cx="8" cy="11" r="1.5" fill="currentColor"/>
-                  <circle cx="14" cy="11" r="1.5" fill="currentColor"/>
+                  <path
+                    d="M4 11 C4 7.7 6.7 5 10 5 h2 C15.3 5 18 7.7 18 11 C18 14.3 15.3 17 12 17 h-2 C6.7 17 4 14.3 4 11Z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M8 11h6"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <circle cx="8" cy="11" r="1.5" fill="currentColor" />
+                  <circle cx="14" cy="11" r="1.5" fill="currentColor" />
                 </svg>
                 <span>LangChain</span>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Section -->
+      <section class="dashboard-section">
+        <div class="dashboard-wrap">
+          <div class="dashboard">
+            <img
+              src="genten-home.png"
+              alt="Genten Dashboard"
+              style="
+                width: 100%;
+                height: auto;
+                display: block;
+                border-radius: 16px;
+              "
+            />
           </div>
         </div>
       </section>
@@ -433,27 +497,24 @@
         <div class="features-inner">
           <div class="feature-card">
             <h3>Real-time cost tracking</h3>
-            <p>Watch every token, every API call, every dollar as agents work. No surprises at end-of-month.</p>
+            <p>
+              Watch every token, every API call, every dollar as agents work. No
+              surprises at end-of-month.
+            </p>
           </div>
           <div class="feature-card">
             <h3>Kill switch for runaway agents</h3>
-            <p>Stop all agents with one click. No SSH, no docker exec, no terminal — just hit the button.</p>
+            <p>
+              Stop all agents with one click. No SSH, no docker exec, no
+              terminal — just hit the button.
+            </p>
           </div>
           <div class="feature-card">
             <h3>Human approval gates</h3>
-            <p>File writes, deployments, irreversible actions — agents stop and wait until you say yes.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Dashboard Section -->
-      <section class="dashboard-section">
-        <h2>One dashboard. Full control.</h2>
-        <p class="section-sub">See agent status, approve actions, and track spend — all from a single self-hosted interface.</p>
-
-        <div class="dashboard-wrap">
-          <div class="dashboard">
-            <img src="genten-home.png" alt="Genten Dashboard" style="width: 100%; height: auto; display: block; border-radius: 16px;" />
+            <p>
+              File writes, deployments, irreversible actions — agents stop and
+              wait until you say yes.
+            </p>
           </div>
         </div>
       </section>
@@ -465,45 +526,59 @@
     </div>
 
     <!-- Waitlist confirmation modal -->
-    <div class="waitlist-modal-overlay" id="waitlist-modal-overlay" onclick="closeWaitlistModal(event)">
+    <div
+      class="waitlist-modal-overlay"
+      id="waitlist-modal-overlay"
+      onclick="closeWaitlistModal(event)"
+    >
       <div class="waitlist-modal" onclick="event.stopPropagation()">
-        <button class="waitlist-modal-close" onclick="closeWaitlistModal()" aria-label="Close">×</button>
+        <button
+          class="waitlist-modal-close"
+          onclick="closeWaitlistModal()"
+          aria-label="Close"
+        >
+          ×
+        </button>
         <div class="waitlist-modal-title">You're in.</div>
-        <div class="waitlist-modal-subtitle">We'll reach out when Genten is ready. One email. No spam.</div>
+        <div class="waitlist-modal-subtitle">
+          We'll reach out when Genten is ready. One email. No spam.
+        </div>
       </div>
     </div>
 
     <script>
       // Custom dropdown handler
-      document.addEventListener('DOMContentLoaded', function() {
-        const customSelect = document.getElementById('custom-select')
-        const trigger = customSelect.querySelector('.custom-select-trigger')
-        const options = customSelect.querySelectorAll('.custom-option')
-        const hiddenInput = document.getElementById('waitlist-source')
-        const placeholder = customSelect.querySelector('.custom-select-placeholder')
+      document.addEventListener("DOMContentLoaded", function () {
+        const customSelect = document.getElementById("custom-select")
+        const trigger = customSelect.querySelector(".custom-select-trigger")
+        const options = customSelect.querySelectorAll(".custom-option")
+        const hiddenInput = document.getElementById("waitlist-source")
+        const placeholder = customSelect.querySelector(
+          ".custom-select-placeholder",
+        )
 
         // Toggle dropdown
-        trigger.addEventListener('click', function(e) {
+        trigger.addEventListener("click", function (e) {
           e.stopPropagation()
-          customSelect.classList.toggle('open')
+          customSelect.classList.toggle("open")
         })
 
         // Select option
         options.forEach(option => {
-          option.addEventListener('click', function(e) {
+          option.addEventListener("click", function (e) {
             e.stopPropagation()
-            const value = this.getAttribute('data-value')
+            const value = this.getAttribute("data-value")
             hiddenInput.value = value
             placeholder.textContent = value
-            trigger.classList.add('has-value')
-            customSelect.classList.remove('open')
+            trigger.classList.add("has-value")
+            customSelect.classList.remove("open")
           })
         })
 
         // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener("click", function (e) {
           if (!customSelect.contains(e.target)) {
-            customSelect.classList.remove('open')
+            customSelect.classList.remove("open")
           }
         })
       })
@@ -513,7 +588,7 @@
         event.preventDefault()
         const form = event.target
         const emailInput = form.querySelector('input[type="email"]')
-        const sourceSelect = form.querySelector('#waitlist-source')
+        const sourceSelect = form.querySelector("#waitlist-source")
         const submitButton = form.querySelector('button[type="submit"]')
         const email = emailInput.value.trim()
         const source = sourceSelect.value
@@ -522,37 +597,43 @@
 
         // Disable button during submission
         submitButton.disabled = true
-        submitButton.textContent = 'Joining...'
+        submitButton.textContent = "Joining..."
 
         try {
           // Send to Google Sheets
-          const response = await fetch('https://script.google.com/macros/s/AKfycbwNUi6xKG_l1gHSt2Df2k5i-qvwGi2XUT68dWglXVYFn-7rMNOzX3DknAZcvCIEqAj8/exec', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-              'Content-Type': 'application/json',
+          const response = await fetch(
+            "https://script.google.com/macros/s/AKfycbwNUi6xKG_l1gHSt2Df2k5i-qvwGi2XUT68dWglXVYFn-7rMNOzX3DknAZcvCIEqAj8/exec",
+            {
+              method: "POST",
+              mode: "no-cors",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: email,
+                source: source,
+              }),
             },
-            body: JSON.stringify({
-              email: email,
-              source: source
-            })
-          })
+          )
 
           // Show confirmation modal
-          const modal = document.getElementById('waitlist-modal-overlay')
-          modal.classList.add('show')
+          const modal = document.getElementById("waitlist-modal-overlay")
+          modal.classList.add("show")
 
           // Clear the form inputs
-          emailInput.value = ''
-          sourceSelect.value = ''
-          const customSelectTrigger = document.querySelector('.custom-select-trigger')
-          const customSelectPlaceholder = document.querySelector('.custom-select-placeholder')
-          customSelectPlaceholder.textContent = 'How did you hear about us?'
-          customSelectTrigger.classList.remove('has-value')
-
+          emailInput.value = ""
+          sourceSelect.value = ""
+          const customSelectTrigger = document.querySelector(
+            ".custom-select-trigger",
+          )
+          const customSelectPlaceholder = document.querySelector(
+            ".custom-select-placeholder",
+          )
+          customSelectPlaceholder.textContent = "How did you hear about us?"
+          customSelectTrigger.classList.remove("has-value")
         } catch (error) {
-          console.error('Waitlist signup error:', error)
-          alert('Something went wrong. Please try again.')
+          console.error("Waitlist signup error:", error)
+          alert("Something went wrong. Please try again.")
         } finally {
           // Re-enable button
           submitButton.disabled = false
@@ -563,11 +644,15 @@
       // Close waitlist modal
       function closeWaitlistModal(event) {
         // If event is provided and it's not from clicking the overlay, don't close
-        if (event && event.target.id !== 'waitlist-modal-overlay' && event.target.className !== 'waitlist-modal-close') {
+        if (
+          event &&
+          event.target.id !== "waitlist-modal-overlay" &&
+          event.target.className !== "waitlist-modal-close"
+        ) {
           return
         }
-        const modal = document.getElementById('waitlist-modal-overlay')
-        modal.classList.remove('show')
+        const modal = document.getElementById("waitlist-modal-overlay")
+        modal.classList.remove("show")
       }
 
       // Tweakable defaults — host rewrites this block on save
