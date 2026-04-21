@@ -1300,7 +1300,7 @@ select.waitlist-input {
 }
 
 .feature-card:nth-child(1) {
-  border: 1px solid rgba(29, 78, 216, 0.3);
+  border: 1px solid rgba(34, 211, 238, 0.3);
 }
 
 .feature-card:nth-child(2) {
@@ -1308,7 +1308,7 @@ select.waitlist-input {
 }
 
 .feature-card:nth-child(3) {
-  border: 1px solid rgba(91, 33, 182, 0.3);
+  border: 1px solid rgba(29, 78, 216, 0.3);
 }
 
 .feature-card:hover {
@@ -1316,8 +1316,8 @@ select.waitlist-input {
 }
 
 .feature-card:nth-child(1):hover {
-  border-color: rgba(29, 78, 216, 0.6);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px rgba(29, 78, 216, 0.2);
+  border-color: rgba(34, 211, 238, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px rgba(34, 211, 238, 0.2);
 }
 
 .feature-card:nth-child(2):hover {
@@ -1326,8 +1326,8 @@ select.waitlist-input {
 }
 
 .feature-card:nth-child(3):hover {
-  border-color: rgba(91, 33, 182, 0.6);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px rgba(91, 33, 182, 0.2);
+  border-color: rgba(29, 78, 216, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px rgba(29, 78, 216, 0.2);
 }
 
 .feature-card h3 {
@@ -1339,7 +1339,7 @@ select.waitlist-input {
 }
 
 .feature-card:nth-child(1) h3 {
-  color: #bfdbfe;
+  color: #67e8f9;
 }
 
 .feature-card:nth-child(2) h3 {
@@ -1347,7 +1347,7 @@ select.waitlist-input {
 }
 
 .feature-card:nth-child(3) h3 {
-  color: #c4b5fd;
+  color: #bfdbfe;
 }
 
 .feature-card p {
