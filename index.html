@@ -367,11 +367,24 @@
                 class="waitlist-input"
                 id="waitlist-email"
               />
+              <button type="submit" class="btn btn-primary">
+                Join Waitlist
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M2 10L10 2M10 2H4.5M10 2V7.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="waitlist-source-row">
               <div class="custom-select-wrapper">
-                <input type="hidden" id="waitlist-source" name="source" required />
+                <input type="hidden" id="waitlist-source" name="source" />
                 <div class="custom-select" id="custom-select">
                   <div class="custom-select-trigger">
-                    <span class="custom-select-placeholder">How did you hear about us?</span>
+                    <span class="custom-select-placeholder">How did you hear about us? (optional)</span>
                   </div>
                   <div class="custom-options">
                     <div class="custom-option" data-value="Twitter/X">Twitter/X</div>
@@ -385,17 +398,6 @@
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary">
-                Join Waitlist
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path
-                    d="M2 10L10 2M10 2H4.5M10 2V7.5"
-                    stroke="currentColor"
-                    stroke-width="1.4"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </button>
             </div>
           </form>
         </div>
@@ -404,9 +406,69 @@
         </p>
       </section>
 
-      <div class="dashboard-wrap">
-        <div class="dashboard">
-          <img src="genten-home.png" alt="Genten Dashboard" style="width: 100%; height: auto; display: block; border-radius: 16px;" />
+      <!-- Features -->
+      <section class="features">
+        <div class="features-inner">
+          <div class="feature-card">
+            <h3>Real-time cost tracking</h3>
+            <p>Watch every token, every API call, every dollar as agents work. No surprises at end-of-month.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Kill switch for runaway agents</h3>
+            <p>Stop all agents with one click. No SSH, no docker exec, no terminal — just hit the button.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Human approval gates</h3>
+            <p>File writes, deployments, irreversible actions — agents stop and wait until you say yes.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Section -->
+      <section class="dashboard-section">
+        <h2>One dashboard. Full control.</h2>
+        <p class="section-sub">See agent status, approve actions, and track spend — all from a single self-hosted interface.</p>
+
+        <div class="dashboard-wrap">
+          <div class="dashboard">
+            <img src="genten-home.png" alt="Genten Dashboard" style="width: 100%; height: auto; display: block; border-radius: 16px;" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Frameworks -->
+      <div class="frameworks">
+        <div class="frameworks-inner">
+          <span class="frameworks-label">Works with</span>
+          <div class="frameworks-list">
+            <div class="framework-item">
+              <svg class="framework-icon" viewBox="0 0 22 22" fill="none">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <path d="M7 11c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                <circle cx="11" cy="14" r="1.5" fill="currentColor"/>
+              </svg>
+              <span>OpenClaw</span>
+            </div>
+            <div class="frameworks-divider"></div>
+            <div class="framework-item">
+              <svg class="framework-icon" viewBox="0 0 22 22" fill="none">
+                <rect x="3" y="8" width="5" height="6" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="14" y="8" width="5" height="6" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M8 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <span>n8n</span>
+            </div>
+            <div class="frameworks-divider"></div>
+            <div class="framework-item">
+              <svg class="framework-icon" viewBox="0 0 22 22" fill="none">
+                <path d="M4 11 C4 7.7 6.7 5 10 5 h2 C15.3 5 18 7.7 18 11 C18 14.3 15.3 17 12 17 h-2 C6.7 17 4 14.3 4 11Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <path d="M8 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="8" cy="11" r="1.5" fill="currentColor"/>
+                <circle cx="14" cy="11" r="1.5" fill="currentColor"/>
+              </svg>
+              <span>LangChain</span>
+            </div>
+          </div>
         </div>
       </div>
 

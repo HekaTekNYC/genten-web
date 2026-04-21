@@ -4,8 +4,17 @@
 .genten-stage {
   position: relative;
   background:
-    radial-gradient(ellipse 80% 45% at 50% 100%, var(--grid-halo, #0a1d3d) 0%, transparent 70%),
-    linear-gradient(180deg, var(--bg-top, #020613) 0%, var(--bg-mid, #030815) 55%, var(--bg-bot, #05102a) 100%);
+    radial-gradient(
+      ellipse 80% 45% at 50% 100%,
+      var(--grid-halo, #0a1d3d) 0%,
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      var(--bg-top, #020613) 0%,
+      var(--bg-mid, #030815) 55%,
+      var(--bg-bot, #05102a) 100%
+    );
   overflow: hidden;
   isolation: isolate;
 }
@@ -34,27 +43,45 @@
   inset: -20% -10% 0 -10%;
   transform: rotateX(68deg) translateZ(0);
   transform-origin: 50% 0%;
-  /* hairline lines + bright intersection dots */
+  /* grid lines only */
   background-image:
-    /* bright intersection dots */
-    radial-gradient(circle at 0 0, var(--grid-dot, #3ad4ff) 1.2px, transparent 1.8px),
-    /* hair-fine lines */
-    linear-gradient(to right,  var(--grid-line, #1a6fb855) 0.4px, transparent 0.4px),
-    linear-gradient(to bottom, var(--grid-line, #1a6fb855) 0.4px, transparent 0.4px);
+    linear-gradient(to right, var(--grid-line, #3ae8ffdb) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line, #3ae8ffdb) 1px, transparent 1px);
   background-size:
-    var(--grid-size, 24px) var(--grid-size, 24px),
-    var(--grid-size, 24px) var(--grid-size, 24px),
-    var(--grid-size, 24px) var(--grid-size, 24px);
+    40px 35px,
+    40px 35px;
   /* semicircular horizon fadeout + curved dome falloff */
   mask-image:
-    radial-gradient(ellipse 60% 80% at 50% 100%, #000 0%, #000 20%, transparent 60%),
-    radial-gradient(ellipse 90% 120% at 50% -10%, #000 0%, #000 40%, transparent 92%);
+    radial-gradient(
+      ellipse 20% 80% at 50% 100%,
+      #000 0%,
+      #000 20%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 90% 120% at 50% -10%,
+      #000 0%,
+      #000 40%,
+      transparent 92%
+    );
   mask-composite: intersect;
   -webkit-mask-image:
-    radial-gradient(ellipse 60% 80% at 50% 100%, #000 0%, #000 20%, transparent 60%),
-    radial-gradient(ellipse 90% 120% at 50% -10%, #000 0%, #000 40%, transparent 92%);
+    radial-gradient(
+      ellipse 20% 80% at 50% 100%,
+      #000 0%,
+      #000 20%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 90% 120% at 50% -10%,
+      #000 0%,
+      #000 40%,
+      transparent 92%
+    );
   -webkit-mask-composite: source-in;
-  filter: drop-shadow(0 0 calc(var(--grid-glow, 1) * 2.5px) var(--grid-dot, #3ad4ffaa));
+  filter: drop-shadow(
+    0 0 calc(var(--grid-glow, 1) * 2.5px) var(--grid-dot, #3ad4ffaa)
+  );
   opacity: calc(0.5 + var(--grid-glow, 1) * 0.5);
 }
 
