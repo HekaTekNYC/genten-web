@@ -1114,34 +1114,78 @@ select.waitlist-input {
   color: #4a5a78;
 }
 
-.bottom-mark {
+.footer {
   position: relative;
   z-index: 10;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px 48px;
+  margin: 80px auto 0;
+  padding: 32px 40px 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid rgba(28, 51, 89, 0.5);
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-mark {
   font-family: "Geist Mono", monospace;
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #4a5a78;
 }
-.bottom-mark .ticks {
+
+.footer-status {
   display: flex;
   gap: 6px;
   align-items: center;
+  font-family: "Geist Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #4a5a78;
 }
-.bottom-mark .tick {
+
+.footer-status .tick {
   width: 2px;
   height: 8px;
   background: #1c3359;
 }
-.bottom-mark .tick.live {
+
+.footer-status .tick.live {
   background: var(--accent);
   box-shadow: 0 0 6px var(--accent);
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-contact {
+  font-family: "Geist", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-contact:hover {
+  color: var(--accent);
+}
+
+.footer-copyright {
+  font-family: "Geist Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #4a5a78;
 }
 
 /* Waitlist confirmation modal */
