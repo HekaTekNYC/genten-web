@@ -82,7 +82,7 @@
   filter: drop-shadow(
     0 0 calc(var(--grid-glow, 1) * 2.5px) var(--grid-dot, #3ad4ffaa)
   );
-  opacity: calc(0.5 + var(--grid-glow, 1) * 0.5);
+  opacity: calc(0.3 + var(--grid-glow, 1) * 0.3);
 }
 
 /* horizon line */
