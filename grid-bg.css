@@ -45,8 +45,8 @@
   transform-origin: 50% 0%;
   /* grid lines only */
   background-image:
-    linear-gradient(to right, var(--grid-line, #3ae8ffdb) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line, #3ae8ffdb) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line, #3af2ffdb) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line, #3afcffdb) 1px, transparent 1px);
   background-size:
     40px 35px,
     40px 35px;
@@ -80,7 +80,7 @@
     );
   -webkit-mask-composite: source-in;
   filter: drop-shadow(
-    0 0 calc(var(--grid-glow, 1) * 2.5px) var(--grid-dot, #3ad4ffaa)
+    0 0 calc(var(--grid-glow, 1) * 2.5px) var(--grid-dot, #3af2ffaa)
   );
   opacity: calc(0.3 + var(--grid-glow, 1) * 0.3);
 }
