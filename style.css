@@ -367,7 +367,7 @@ body {
   height: 80vw;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.10;
 }
 .saturn svg {
   width: 100%;
