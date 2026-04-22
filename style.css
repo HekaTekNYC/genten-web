@@ -1226,10 +1226,28 @@ select.waitlist-input {
   font-weight: 300;
 }
 
+/* Integrations section (frameworks + features) */
+.integrations-section {
+  text-align: center;
+  margin: 100px auto 0;
+  max-width: 1200px;
+  padding: 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.integrations-section h2 {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 60px;
+  letter-spacing: -0.02em;
+}
+
 /* Frameworks section */
 .frameworks {
   padding: 0;
-  margin-top: 24px;
+  margin-top: 0;
   position: relative;
   z-index: 1;
 }
@@ -1394,7 +1412,7 @@ select.waitlist-input {
 /* Dashboard section */
 .dashboard-section {
   text-align: center;
-  margin: 32px auto 40px;
+  margin: 140px auto 40px;
   max-width: 1200px;
   padding: 0 40px;
 }
