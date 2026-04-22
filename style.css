@@ -721,6 +721,24 @@ select.waitlist-input {
   margin: 60px auto 0;
   padding: 0 40px 40px;
 }
+.dashboard-wrap::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 350px;
+  background: radial-gradient(
+    ellipse closest-side,
+    var(--accent, #3ad4ff) 0%,
+    transparent 70%
+  );
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(60px);
+}
 .dashboard {
   position: relative;
   border-radius: 16px;

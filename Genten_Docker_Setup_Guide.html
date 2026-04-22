@@ -1,0 +1,1827 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Genten — Docker Setup Guide</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0f1e;
+        --bg-card: #0a1226;
+        --bg-card-alt: #050a18;
+        --bg-card-hover: #0e1a30;
+        --text-primary: #e8eef8;
+        --text-secondary: #9aa8c8;
+        --text-tertiary: #7080a0;
+        --border: rgba(28, 51, 89, 0.8);
+        --border-soft: rgba(28, 51, 89, 0.4);
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+
+        --accent: #3ad4ff;
+        --accent-soft: #6ae2ff;
+        --warm: #e8b875;
+
+        --amethyst: #8b5cf6;
+        --amethyst-bg: rgba(139, 92, 246, 0.12);
+        --amethyst-border: rgba(139, 92, 246, 0.3);
+
+        --sapphire: #3b82f6;
+        --sapphire-bg: rgba(59, 130, 246, 0.12);
+        --sapphire-border: rgba(59, 130, 246, 0.3);
+
+        --emerald: #10b981;
+        --emerald-bg: rgba(16, 185, 129, 0.12);
+        --emerald-border: rgba(16, 185, 129, 0.3);
+
+        --topaz: #f59e0b;
+        --topaz-bg: rgba(245, 158, 11, 0.12);
+        --topaz-border: rgba(245, 158, 11, 0.3);
+
+        --ruby: #ef4444;
+        --ruby-bg: rgba(239, 68, 68, 0.12);
+        --ruby-border: rgba(239, 68, 68, 0.3);
+
+        --aqua: #06b6d4;
+        --aqua-bg: rgba(6, 182, 212, 0.12);
+        --aqua-border: rgba(6, 182, 212, 0.3);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text-primary);
+        font-family:
+          "Geist",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      /* ── Header ── */
+      .guide-header {
+        background: linear-gradient(
+          180deg,
+          #020613 0%,
+          #030815 50%,
+          #05102a 100%
+        );
+        border-bottom: 1px solid var(--border);
+        padding: 56px 48px 48px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .guide-header::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(58, 212, 255, 0.06) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .guide-header::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(circle at center, #3ad4ff 0.5px, transparent 1px),
+          linear-gradient(to right, #1a6fb822 1px, transparent 1px),
+          linear-gradient(to bottom, #1a6fb822 1px, transparent 1px);
+        background-size:
+          28px 28px,
+          28px 28px,
+          28px 28px;
+        mask-image: radial-gradient(
+          ellipse 80% 60% at 50% 110%,
+          #000 0%,
+          transparent 100%
+        );
+        -webkit-mask-image: radial-gradient(
+          ellipse 80% 60% at 50% 110%,
+          #000 0%,
+          transparent 100%
+        );
+        opacity: 0.2;
+        pointer-events: none;
+      }
+
+      .header-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+      .header-seal {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .header-wordmark {
+        font-family: "Figtree", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: var(--text-primary);
+        letter-spacing: -0.5px;
+      }
+
+      .header-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.25);
+        color: var(--sapphire);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 999px;
+        margin-bottom: 20px;
+        font-family: "Geist Mono", monospace;
+        position: relative;
+        z-index: 1;
+      }
+
+      .guide-header h1 {
+        font-size: clamp(26px, 5vw, 40px);
+        font-weight: 700;
+        letter-spacing: 0;
+        margin-bottom: 12px;
+        color: var(--text-primary);
+        font-family: "Figtree", sans-serif;
+        position: relative;
+        z-index: 1;
+      }
+      .guide-header > p {
+        font-size: 16px;
+        color: var(--text-secondary);
+        max-width: 560px;
+        margin: 0 auto 28px;
+        line-height: 1.7;
+        position: relative;
+        z-index: 1;
+      }
+      .prereq-bar {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+      .prereq-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 12px;
+        color: var(--text-secondary);
+        background: rgba(10, 18, 38, 0.8);
+        border: 1px solid var(--border);
+        padding: 5px 12px;
+        border-radius: 8px;
+        font-family: "Geist Mono", monospace;
+      }
+      .prereq-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--emerald);
+        box-shadow: 0 0 6px var(--emerald);
+      }
+
+      /* ── Progress Nav ── */
+      .progress-nav {
+        background: rgba(5, 10, 24, 0.95);
+        border-bottom: 1px solid var(--border);
+        padding: 0 48px;
+        display: flex;
+        gap: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(12px);
+      }
+      .progress-nav::-webkit-scrollbar {
+        display: none;
+      }
+      .nav-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 16px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-tertiary);
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        white-space: nowrap;
+        transition: all 0.15s;
+        font-family: "Geist Mono", monospace;
+      }
+      .nav-pill:hover {
+        color: var(--accent);
+      }
+      .nav-pill.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+
+      /* ── Layout ── */
+      .content {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 48px 32px 100px;
+      }
+
+      /* ── Section ── */
+      .section {
+        margin-bottom: 56px;
+      }
+
+      .step-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+      .step-number {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #02050f;
+        font-size: 15px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: 0 2px 12px rgba(58, 212, 255, 0.3);
+      }
+      .step-number.warn {
+        background: var(--ruby);
+        color: #fff;
+        box-shadow: 0 2px 12px rgba(239, 68, 68, 0.3);
+      }
+      .step-number.help {
+        background: var(--amethyst);
+        color: #fff;
+        box-shadow: 0 2px 12px rgba(139, 92, 246, 0.3);
+      }
+
+      .step-header h2 {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--text-primary);
+        letter-spacing: -0.3px;
+      }
+      .step-subtitle {
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+      }
+
+      /* ── Section label ── */
+      .section-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--text-tertiary);
+        margin: 28px 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Geist Mono", monospace;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, var(--border), transparent);
+      }
+
+      /* ── Code blocks ── */
+      .code-block {
+        background: #0a1228;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 18px;
+        margin: 12px 0;
+        position: relative;
+        overflow-x: auto;
+        box-shadow: var(--shadow-md);
+      }
+      .code-block pre {
+        font-family: "Geist Mono", monospace;
+        font-size: 13px;
+        color: var(--accent-soft);
+        white-space: pre-wrap;
+        word-break: break-all;
+        line-height: 1.6;
+        margin: 0;
+        padding-right: 80px;
+      }
+      .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        background: rgba(58, 212, 255, 0.08);
+        border: 1px solid rgba(58, 212, 255, 0.2);
+        color: var(--accent-soft);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        min-height: 28px;
+        font-family: "Geist", sans-serif;
+        transition: all 0.15s;
+      }
+      .copy-btn:hover {
+        background: rgba(58, 212, 255, 0.15);
+      }
+      .copy-btn.copied {
+        color: #34d399;
+        border-color: rgba(52, 211, 153, 0.3);
+        background: rgba(52, 211, 153, 0.1);
+      }
+
+      /* ── Info/warn/success/tip blocks ── */
+      .warning-block,
+      .info-block,
+      .success-block,
+      .tip-block {
+        display: flex;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 0 8px 8px 0;
+        margin: 16px 0;
+        font-size: 13.5px;
+        line-height: 1.6;
+      }
+      .warning-block {
+        background: var(--topaz-bg);
+        border: 1px solid var(--topaz-border);
+        color: #d4a44a;
+        border-left: 2px solid var(--topaz);
+      }
+      .info-block {
+        background: var(--sapphire-bg);
+        border: 1px solid var(--sapphire-border);
+        color: #93b4f0;
+        border-left: 2px solid var(--sapphire);
+      }
+      .success-block {
+        background: var(--emerald-bg);
+        border: 1px solid var(--emerald-border);
+        color: #34d399;
+        border-left: 2px solid var(--emerald);
+      }
+      .tip-block {
+        background: rgba(58, 212, 255, 0.06);
+        border: 1px solid rgba(58, 212, 255, 0.15);
+        color: var(--accent-soft);
+        border-left: 2px solid var(--accent);
+      }
+
+      .info-block code {
+        background: rgba(59, 130, 246, 0.15);
+        color: #93b4f0;
+        border-color: rgba(59, 130, 246, 0.2);
+      }
+      .warning-block code {
+        background: rgba(245, 158, 11, 0.15);
+        color: #fde68a;
+        border-color: rgba(245, 158, 11, 0.2);
+      }
+      .success-block code {
+        background: rgba(16, 185, 129, 0.15);
+        color: #34d399;
+        border-color: rgba(16, 185, 129, 0.2);
+      }
+      .tip-block code {
+        background: rgba(58, 212, 255, 0.1);
+        color: var(--accent);
+        border-color: rgba(58, 212, 255, 0.2);
+      }
+
+      /* ── Action blocks ── */
+      .action-block {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 16px;
+        margin: 12px 0;
+        background: rgba(58, 212, 255, 0.04);
+        border-left: 2px solid rgba(58, 212, 255, 0.3);
+        border-radius: 0 8px 8px 0;
+      }
+      .action-marker {
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 16px;
+        flex-shrink: 0;
+        line-height: 1.6;
+      }
+      .action-content {
+        flex: 1;
+      }
+      .action-text {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+      }
+      .action-note {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin: 0;
+      }
+
+      /* ── Inline code ── */
+      code {
+        font-family: "Geist Mono", monospace;
+        font-size: 12px;
+        background: rgba(28, 51, 89, 0.6);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: var(--accent-soft);
+        font-weight: 500;
+        border: 1px solid rgba(28, 51, 89, 0.8);
+      }
+
+      /* ── Divider ── */
+      .divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--border),
+          transparent
+        );
+        margin: 48px 0;
+      }
+
+      /* ── Platform tabs ── */
+      .platform-tabs {
+        display: flex;
+        gap: 8px;
+        margin: 20px 0 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .platform-tab {
+        padding: 10px 20px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-tertiary);
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.15s;
+        font-family: "Geist", sans-serif;
+      }
+      .platform-tab:hover {
+        color: var(--text-primary);
+      }
+      .platform-tab.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+      .platform-content {
+        display: none;
+      }
+      .platform-content.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="guide-header">
+      <div class="header-logo">
+        <div class="header-seal">
+          <svg
+            role="img"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Genten"
+          >
+            <title>Saturn</title>
+            <path
+              fill="#E8B875"
+              d="M19.039 11.459c.001.015.022.244.03.407.006.113 0 .29 0 .3.003 0 .029.023.03.024 1.428 1.17 2.943 2.767 3.204 3.94.073.325.056.618-.072.868-.152.293-.439.503-.834.638-2.046.7-6.925-.642-10.907-2.609-2.845-1.406-5.342-3.081-7.032-4.719-1.57-1.523-1.995-2.71-1.59-3.427.155-.271.42-.472.776-.609 1.299-.507 3.788-.152 6.239.579-1.16.866-1.968 2.034-2.342 3.202l-.001.007a.051.051 0 0 1-.001.006c-.115 1.07 1.434 2.47 3 3.25-.002-.006.084.032.084.026-.002-.006-.015-.109-.017-.113-.366-2.66 1.648-6.64 3.765-7.513.136-.056.254-.09.27-.095l-.273-.027c-.074-.006-.148-.013-.228-.015a7.464 7.464 0 0 0-.272-.01 6.443 6.443 0 0 0-3.4.892C5.378 5.057 2.383 4.892 1.13 5.31c-.497.167-.833.418-1 .751-.174.35-.175.79-.002 1.306.57 1.704 3.058 4.032 6.211 6.099.457 2.407 2.615 4.875 5.703 5.204l.142.015a.278.278 0 0 1 .05 0 6.618 6.618 0 0 0-.173-.132c-.955-.736-1.813-1.949-2.107-3l.185.093.143.07c4.985 2.465 10.215 3.72 12.53 2.947.519-.174.9-.418 1.075-.768.167-.335.139-.78-.029-1.278-.436-1.3-2.304-3.284-4.675-5.052a5.003 5.003 0 0 0-.145-.107"
+            />
+          </svg>
+          <!-- <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="#E8B875" stroke-width="1.5"/>
+        <circle cx="12" cy="12" r="3" fill="#E8B875"/>
+      </svg> -->
+        </div>
+        <div class="header-wordmark">Genten</div>
+      </div>
+      <div class="header-badge">DOCKER SETUP</div>
+      <h1>Get Genten Running with Docker</h1>
+      <p>Self-hosted AI monitoring in about 15 minutes. No coding required.</p>
+      <div class="prereq-bar">
+        <div class="prereq-item">
+          <div class="prereq-dot"></div>
+          ~15 minutes
+        </div>
+        <div class="prereq-item">
+          <div class="prereq-dot"></div>
+          Mac, Windows, or Linux
+        </div>
+        <div class="prereq-item">
+          <div class="prereq-dot"></div>
+          No coding needed
+        </div>
+      </div>
+    </header>
+
+    <!-- Progress Nav -->
+    <nav class="progress-nav">
+      <a href="#prerequisites" class="nav-pill active">1. Prerequisites</a>
+      <a href="#install-docker" class="nav-pill">2. Install Docker</a>
+      <a href="#pull-image" class="nav-pill">3. Pull Image</a>
+      <a href="#config-file" class="nav-pill">4. Configure</a>
+      <a href="#docker-compose" class="nav-pill">5. Compose</a>
+      <a href="#start-genten" class="nav-pill">6. Start</a>
+      <a href="#troubleshooting" class="nav-pill">7. Troubleshoot</a>
+      <a href="#manage" class="nav-pill">8. Manage</a>
+      <a href="#help" class="nav-pill">9. Help</a>
+    </nav>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Section 1: Prerequisites -->
+      <section id="prerequisites" class="section">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h2>What You Need Before Starting</h2>
+        </div>
+        <p class="step-subtitle">
+          Getting Genten running on your machine is straightforward. Here's what
+          you need.
+        </p>
+
+        <div
+          class="prereq-bar"
+          style="justify-content: flex-start; margin-top: 20px"
+        >
+          <div class="prereq-item">
+            <div class="prereq-dot"></div>
+            Mac, Windows, or Linux computer
+          </div>
+          <div class="prereq-item">
+            <div class="prereq-dot"></div>
+            Docker Desktop installed
+          </div>
+          <div class="prereq-item">
+            <div class="prereq-dot"></div>
+            About 15 minutes
+          </div>
+        </div>
+
+        <div class="success-block" style="margin-top: 24px">
+          <strong>No coding required.</strong> If you can copy and paste text
+          and click buttons, you can do this. The entire setup is done through
+          visual interfaces and copy-paste commands.
+        </div>
+
+        <p
+          style="
+            margin-top: 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+          "
+        >
+          If you don't have Docker Desktop yet, that's fine. We'll walk you
+          through installing it in the next section.
+        </p>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Section 2: Install Docker Desktop -->
+      <section id="install-docker" class="section">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h2>Install Docker Desktop</h2>
+        </div>
+        <p class="step-subtitle">
+          Docker Desktop is a free application that lets you run containers on
+          your computer. If you already have it installed, skip to Section 3.
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Download Docker Desktop for your operating system
+            </div>
+            <div class="action-note">
+              Visit
+              <a
+                href="https://www.docker.com/products/docker-desktop/"
+                target="_blank"
+                style="color: var(--accent); text-decoration: none"
+                >docker.com/products/docker-desktop</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- SCREENSHOT: Docker Desktop download page -->
+
+        <div class="platform-tabs">
+          <button class="platform-tab active" onclick="showPlatform('mac')">
+            Mac
+          </button>
+          <button class="platform-tab" onclick="showPlatform('windows')">
+            Windows
+          </button>
+          <button class="platform-tab" onclick="showPlatform('linux')">
+            Linux
+          </button>
+        </div>
+
+        <div id="platform-mac" class="platform-content active">
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">
+                Download the Mac version (Apple Silicon or Intel)
+              </div>
+              <div class="action-note">
+                If your Mac was made after 2020, choose Apple Silicon. Otherwise
+                choose Intel.
+              </div>
+            </div>
+          </div>
+
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">Open the downloaded .dmg file</div>
+            </div>
+          </div>
+
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">
+                Drag Docker to your Applications folder
+              </div>
+            </div>
+          </div>
+
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">
+                Open Docker Desktop from Applications
+              </div>
+              <div class="action-note">
+                The first time you open it, Mac will ask you to confirm. Click
+                "Open".
+              </div>
+            </div>
+          </div>
+
+          <!-- SCREENSHOT: Docker Desktop Mac installation -->
+
+          <div class="tip-block" style="margin-top: 24px">
+            <strong>First launch takes a minute.</strong> Docker Desktop needs
+            to install some background components. Wait until you see a whale
+            icon in your menu bar at the top of the screen. That means Docker is
+            running.
+          </div>
+        </div>
+
+        <div id="platform-windows" class="platform-content">
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">Download Docker Desktop for Windows</div>
+            </div>
+          </div>
+
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">Run the installer (.exe file)</div>
+            </div>
+          </div>
+
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">Follow the installation wizard</div>
+              <div class="action-note">
+                Accept the default options. Docker will ask to enable WSL 2
+                (Windows Subsystem for Linux) if it's not already enabled.
+              </div>
+            </div>
+          </div>
+
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">Restart your computer when prompted</div>
+            </div>
+          </div>
+
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">
+                Open Docker Desktop from the Start menu
+              </div>
+            </div>
+          </div>
+
+          <!-- SCREENSHOT: Docker Desktop Windows installation -->
+
+          <div class="tip-block" style="margin-top: 24px">
+            <strong>Wait for Docker to start.</strong> You'll see a whale icon
+            appear in your system tray (bottom-right corner). When it stops
+            animating, Docker is ready.
+          </div>
+        </div>
+
+        <div id="platform-linux" class="platform-content">
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">Download Docker Desktop for Linux</div>
+              <div class="action-note">
+                Docker Desktop for Linux supports Ubuntu, Debian, and Fedora.
+              </div>
+            </div>
+          </div>
+
+          <div class="action-block">
+            <div class="action-marker">→</div>
+            <div class="action-content">
+              <div class="action-text">Install the .deb or .rpm package</div>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <strong>Prefer Docker Engine?</strong> If you're comfortable with
+            the command line, you can use Docker Engine instead of Docker
+            Desktop. The rest of this guide works the same either way.
+          </div>
+        </div>
+
+        <div class="section-label">Verify Installation</div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Open Terminal (Mac) or PowerShell (Windows)
+            </div>
+            <div class="action-note">
+              Mac: Applications → Utilities → Terminal. Windows: Search
+              "PowerShell" in the start menu.
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">Run this command:</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>docker --version</pre>
+        </div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          You should see something like:
+        </p>
+
+        <div
+          class="code-block"
+          style="background: #0a1228; border: 1px solid var(--border)"
+        >
+          <pre style="color: #34d399">Docker version 24.0.7, build afdd53b</pre>
+        </div>
+
+        <div class="success-block">
+          <strong>Success!</strong> If you see a version number, Docker is
+          installed and running correctly.
+        </div>
+
+        <div class="warning-block">
+          <strong>See "command not found"?</strong> This means Docker Desktop
+          isn't running yet. Open the Docker Desktop app first (look for it in
+          your Applications folder or Start menu), wait for the whale icon to
+          appear in your menu bar or system tray, then try the command again.
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Section 3: Pull Image -->
+      <section id="pull-image" class="section">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h2>Pull the Genten Image</h2>
+        </div>
+        <p class="step-subtitle">
+          Download Genten from GitHub to your computer. This takes 1-2 minutes.
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Open Terminal (Mac) or PowerShell (Windows)
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">Run this command:</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>docker pull ghcr.io/hekateknyc/genten:latest</pre>
+        </div>
+
+        <div class="tip-block">
+          <strong>What this does:</strong> Docker downloads Genten's container
+          image from GitHub's container registry to your local machine. You'll
+          see progress bars as it downloads each layer of the image.
+        </div>
+
+        <div class="section-label">What You Should See</div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          When the download finishes, you'll see a message like:
+        </p>
+
+        <div
+          class="code-block"
+          style="background: #0a1228; border: 1px solid var(--border)"
+        >
+          <pre style="color: #34d399">
+Status: Downloaded newer image for ghcr.io/hekateknyc/genten:latest</pre
+          >
+        </div>
+
+        <div class="success-block">
+          <strong>Image downloaded!</strong> Genten is now on your computer and
+          ready to configure.
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Section 4: Configuration File -->
+      <section id="config-file" class="section">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <h2>Set Up Your Configuration File</h2>
+        </div>
+        <p class="step-subtitle">
+          Genten needs a configuration file to know where to store data and how
+          to run. Don't worry, we'll walk through each setting.
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Create a new folder somewhere you can find it
+            </div>
+            <div class="action-note">
+              Your Desktop or Documents folder works great. Name it "genten"
+              (all lowercase).
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Create a file called <code>.env</code> inside that folder
+            </div>
+            <div class="action-note">
+              Files starting with a dot are hidden by default on Mac. Press
+              Cmd+Shift+. in Finder to show hidden files. On Windows, enable
+              "Show hidden files" in File Explorer settings.
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Copy the configuration below into your <code>.env</code> file:
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+# ===================================================================
+# PRODUCTION-REQUIRED CONFIGURATION
+# These variables MUST be set in production environments
+# ===================================================================
+
+NODE_ENV=production
+VITE_API_URL=http://localhost:3001
+DATABASE_URL=./data/agent-dashboard.sqlite
+AGENT_GATEWAY_URL=http://127.0.0.1:18789
+DEV_MODE=false
+CLIENT_URL=http://localhost:5173
+
+# ===================================================================
+# OPTIONAL CONFIGURATION
+# These variables have defaults and can be customized as needed
+# ===================================================================
+
+PORT=3001
+LOG_LEVEL=info
+OPENCLAW_TOKEN=
+OPENCLAW_BIN_PATH=
+BRIEFING_HOUR=8
+
+# ===================================================================
+# EMAIL CONFIGURATION (Optional)
+# Required only if email notifications/briefings are enabled.
+# Genten sends all system emails from gentendashboard@gmail.com.
+# Users enter their own email in the Settings page to receive briefings.
+# ===================================================================
+
+GMAIL_APP_PASSWORD=
+FEEDBACK_RELAY_URL=https://your-apps-script-relay-url-here
+FEEDBACK_RELAY_SECRET=</pre
+          >
+        </div>
+
+        <div class="section-label">Understanding the Required Settings</div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+          "
+        >
+          Here's what each required setting means.
+          <strong>You don't need to change any of these</strong> unless you're
+          doing something advanced.
+        </p>
+
+        <div
+          style="
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 16px 0;
+          "
+        >
+          <div style="margin-bottom: 16px">
+            <code style="display: block; margin-bottom: 6px"
+              >NODE_ENV=production</code
+            >
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0">
+              Tells Genten to run in production mode. Leave this as-is.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 16px">
+            <code style="display: block; margin-bottom: 6px"
+              >VITE_API_URL=http://localhost:3001</code
+            >
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0">
+              The web address where Genten will run. Use
+              <code>localhost:3001</code> unless you're hosting this on a
+              server.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 16px">
+            <code style="display: block; margin-bottom: 6px"
+              >DATABASE_URL=./data/agent-dashboard.sqlite</code
+            >
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0">
+              Where Genten stores all your data. This will create a folder
+              called "data" inside your genten folder. Leave as-is.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 16px">
+            <code style="display: block; margin-bottom: 6px"
+              >DEV_MODE=false</code
+            >
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0">
+              Disables developer tools. Leave this as <code>false</code> for
+              normal use.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 0">
+            <code style="display: block; margin-bottom: 6px"
+              >CLIENT_URL=http://localhost:5173</code
+            >
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0">
+              Internal frontend URL. Leave as-is.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-label">Optional Settings (Skip for Now)</div>
+
+        <div class="info-block">
+          The optional settings let you connect OpenClaw agents and enable email
+          notifications. <strong>You can skip these for now</strong> and come
+          back to configure them once Genten is running. Just leave them blank
+          or with their default values.
+        </div>
+
+        <div class="tip-block">
+          <strong>Want email briefings?</strong> If you'd like Genten to send
+          you a daily summary email, you'll need to set up
+          <code>GMAIL_APP_PASSWORD</code> after your first launch. We'll cover
+          that in the Settings page inside Genten.
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Section 5: docker-compose.yml -->
+      <section id="docker-compose" class="section">
+        <div class="step-header">
+          <div class="step-number">5</div>
+          <h2>Create the docker-compose.yml File</h2>
+        </div>
+        <p class="step-subtitle">
+          Docker Compose tells Docker how to run Genten. This file defines the
+          image to use, which ports to expose, and where to store data.
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Create a file called <code>docker-compose.yml</code> in the same
+              folder as your <code>.env</code> file
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Copy this content into <code>docker-compose.yml</code>:
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+services:
+  genten:
+    image: ghcr.io/hekateknyc/genten:latest
+    build: .
+    container_name: genten
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env</pre
+          >
+        </div>
+
+        <div class="section-label">What This File Does</div>
+
+        <div
+          style="
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 16px 0;
+          "
+        >
+          <div style="margin-bottom: 16px">
+            <code style="display: block; margin-bottom: 6px"
+              >image: ghcr.io/hekateknyc/genten:latest</code
+            >
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0">
+              Use the Genten image you just downloaded.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 16px">
+            <code style="display: block; margin-bottom: 6px"
+              >ports: "3001:3001"</code
+            >
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0">
+              Make Genten available at <code>http://localhost:3001</code> in
+              your browser.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 16px">
+            <code style="display: block; margin-bottom: 6px"
+              >volumes: - ./data:/app/data</code
+            >
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0">
+              <strong>This is the most important line.</strong> It maps the
+              "data" folder on your computer to the container's storage. This
+              means your data persists even when you stop and restart Genten.
+              Without this line, you'd lose everything when you restart.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 0">
+            <code style="display: block; margin-bottom: 6px"
+              >restart: unless-stopped</code
+            >
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0">
+              Automatically restart Genten if it crashes or if your computer
+              restarts.
+            </p>
+          </div>
+        </div>
+
+        <div class="success-block">
+          <strong>Your data is safe.</strong> Because of the volumes line, all
+          your agents, logs, and settings are saved to a "data" folder on your
+          computer. Stopping and starting Genten won't delete anything.
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Section 6: Start Genten -->
+      <section id="start-genten" class="section">
+        <div class="step-header">
+          <div class="step-number">6</div>
+          <h2>Start Genten</h2>
+        </div>
+        <p class="step-subtitle">
+          You're ready to launch. This is the moment everything comes together.
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Open Terminal (Mac) or PowerShell (Windows)
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Navigate to the folder where you created your files
+            </div>
+            <div class="action-note">
+              Use <code>cd</code> to change directories. For example:
+              <code>cd ~/Desktop/genten</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">Run this command:</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>docker compose up</pre>
+        </div>
+
+        <div class="tip-block">
+          <strong>What happens now:</strong> Docker starts Genten. You'll see
+          logs scrolling in your terminal as Genten initializes its database,
+          runs migrations, and starts the web server.
+        </div>
+
+        <div class="section-label">What You Should See</div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          Watch for these messages in the logs:
+        </p>
+
+        <div
+          class="code-block"
+          style="background: #0a1228; border: 1px solid var(--border)"
+        >
+          <pre style="color: #5a7aa8">
+[db] Ran 16 migration(s)
+[server] Server listening on port 3001
+[server] Frontend URL: http://localhost:5173</pre
+          >
+        </div>
+
+        <div class="success-block">
+          <strong>Genten is running!</strong> When you see "Server listening on
+          port 3001", you're ready to open the dashboard.
+        </div>
+
+        <div class="action-block" style="margin-top: 24px">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">Open your browser and go to:</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>http://localhost:3001</pre>
+        </div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 16px;
+          "
+        >
+          You should see the Genten dashboard load. The first time you visit,
+          you'll see an empty dashboard with a "Connect an Agent" button. That's
+          normal — you haven't connected any AI agents yet.
+        </p>
+
+        <!-- SCREENSHOT: Genten dashboard first load -->
+
+        <div class="tip-block">
+          <strong>Keep the terminal open.</strong> As long as the terminal is
+          running, Genten is running. If you close the terminal, Genten stops.
+          To run Genten in the background so you can close the terminal, use
+          <code>docker compose up -d</code> instead (the <code>-d</code> means
+          "detached" mode).
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Section 7: Troubleshooting -->
+      <section id="troubleshooting" class="section">
+        <div class="step-header">
+          <div class="step-number warn">7</div>
+          <h2>Common Problems and Fixes</h2>
+        </div>
+        <p class="step-subtitle">
+          Most issues have quick fixes. Here are the ones we see most often.
+        </p>
+
+        <div class="section-label">Port Already in Use</div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          <strong>Error message:</strong>
+          <code
+            >Error starting userland proxy: listen tcp4 0.0.0.0:3001: bind:
+            address already in use</code
+          >
+        </p>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          <strong>What it means:</strong> Something else on your computer is
+          already using port 3001.
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">Open <code>docker-compose.yml</code></div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Change the first <code>3001</code> in the ports line to another
+              number
+            </div>
+            <div class="action-note">
+              For example: <code>"3002:3001"</code> — this makes Genten
+              available at <code>localhost:3002</code> instead
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label">Cannot Connect to Docker Daemon</div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          <strong>Error message:</strong>
+          <code
+            >Cannot connect to the Docker daemon. Is the docker daemon
+            running?</code
+          >
+        </p>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          <strong>What it means:</strong> Docker Desktop isn't running.
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Open Docker Desktop from your Applications folder or Start menu
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Wait for the whale icon to appear in your menu bar/system tray
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Try your <code>docker compose up</code> command again
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label">Permission Denied (Linux Only)</div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          <strong>Error message:</strong>
+          <code
+            >permission denied while trying to connect to the Docker daemon
+            socket</code
+          >
+        </p>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          <strong>What it means:</strong> Your user account doesn't have
+          permission to use Docker.
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Run this command to add yourself to the docker group:
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>sudo usermod -aG docker $USER</pre>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Log out and log back in for the change to take effect
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label">Dashboard Loads But No Agents Show Up</div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          <strong>This is normal!</strong> You haven't connected any AI agents
+          yet. Genten is working correctly — it's just empty.
+        </p>
+
+        <div class="info-block">
+          <strong>Next step:</strong> Click "Connect an Agent" in the dashboard,
+          or check out the
+          <a
+            href="./Genten_OpenClaw_Setup_Guide.html"
+            style="color: var(--accent); text-decoration: none"
+            >OpenClaw Setup Guide</a
+          >
+          to connect your first agent.
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Section 8: Managing Genten -->
+      <section id="manage" class="section">
+        <div class="step-header">
+          <div class="step-number">8</div>
+          <h2>Stopping and Restarting Genten</h2>
+        </div>
+        <p class="step-subtitle">
+          How to stop, restart, and update Genten without losing your data.
+        </p>
+
+        <div class="section-label">To Stop Genten</div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          If you started Genten with <code>docker compose up</code> (not
+          detached mode):
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Press <code>Ctrl+C</code> in the terminal where Genten is running
+            </div>
+          </div>
+        </div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin: 16px 0 12px;
+          "
+        >
+          If you started Genten in detached mode with
+          <code>docker compose up -d</code>:
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Navigate to your genten folder in the terminal
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">Run:</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>docker compose down</pre>
+        </div>
+
+        <div class="section-label">To Restart Genten</div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Navigate to your genten folder in the terminal
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">Run:</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>docker compose up</pre>
+        </div>
+
+        <div class="success-block">
+          <strong>Your data is safe.</strong> Stopping and restarting Genten
+          does not delete anything. All your agents, logs, settings, and history
+          are stored in the "data" folder on your computer and will be there
+          when you restart.
+        </div>
+
+        <div class="section-label">To Update to a New Version</div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+          "
+        >
+          When HekaTek releases a new version of Genten:
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">Stop Genten if it's running</div>
+            <div class="action-note">
+              <code>Ctrl+C</code> or <code>docker compose down</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">Pull the latest image:</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>docker compose pull</pre>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">Start Genten again:</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>docker compose up</pre>
+        </div>
+
+        <p
+          style="
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 16px;
+          "
+        >
+          Genten will automatically run any new database migrations when it
+          starts. Your data remains intact.
+        </p>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Section 9: Get Help -->
+      <section id="help" class="section">
+        <div class="step-header">
+          <div class="step-number help">9</div>
+          <h2>Where to Get Help</h2>
+        </div>
+        <p class="step-subtitle">
+          We're here to help you get Genten running smoothly.
+        </p>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Check the
+              <a
+                href="./Genten_FAQ.html"
+                style="color: var(--accent); text-decoration: none"
+                >Frequently Asked Questions</a
+              >
+            </div>
+            <div class="action-note">
+              Covers common questions about Genten features, costs, and
+              troubleshooting
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Email us at
+              <a
+                href="mailto:help@genten.io"
+                style="color: var(--accent); text-decoration: none"
+                >help@genten.io</a
+              >
+            </div>
+            <div class="action-note">
+              We respond to support emails during business hours (US Eastern
+              Time)
+            </div>
+          </div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-marker">→</div>
+          <div class="action-content">
+            <div class="action-text">
+              Use the feedback button in the Genten dashboard
+            </div>
+            <div class="action-note">
+              Click the feedback icon in the bottom-right corner to send us a
+              message directly from the app
+            </div>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <strong>Soft-launch period:</strong> Genten is currently in soft
+          launch. All feedback submitted through the dashboard routes directly
+          to the HekaTek team. We read every message and use it to improve
+          Genten.
+        </div>
+
+        <div class="success-block" style="margin-top: 32px">
+          <strong>You're all set!</strong> Genten is running on your machine.
+          The next step is connecting your first AI agent. Check out the
+          <a
+            href="./Genten_OpenClaw_Setup_Guide.html"
+            style="color: #34d399; text-decoration: underline"
+            >OpenClaw Setup Guide</a
+          >,
+          <a
+            href="./Genten_n8n_Setup_Guide.html"
+            style="color: #34d399; text-decoration: underline"
+            >n8n Setup Guide</a
+          >, or
+          <a
+            href="./Genten_LangChain_Setup_Guide.html"
+            style="color: #34d399; text-decoration: underline"
+            >LangChain Setup Guide</a
+          >
+          to get started.
+        </div>
+      </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      // Copy code button functionality
+      function copyCode(btn) {
+        const pre = btn.nextElementSibling
+        navigator.clipboard.writeText(pre.textContent).then(() => {
+          btn.textContent = "Copied!"
+          btn.classList.add("copied")
+          setTimeout(() => {
+            btn.textContent = "Copy"
+            btn.classList.remove("copied")
+          }, 2000)
+        })
+      }
+
+      // Platform tab switcher for Install Docker section
+      function showPlatform(platform) {
+        // Hide all platform contents
+        document
+          .querySelectorAll(".platform-content")
+          .forEach(el => el.classList.remove("active"))
+        // Remove active class from all tabs
+        document
+          .querySelectorAll(".platform-tab")
+          .forEach(el => el.classList.remove("active"))
+
+        // Show selected platform content
+        document.getElementById("platform-" + platform).classList.add("active")
+        // Activate clicked tab
+        event.target.classList.add("active")
+      }
+
+      // Progress nav active state on scroll
+      document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll(".section")
+        const navPills = document.querySelectorAll(".nav-pill")
+
+        const observer = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const id = entry.target.getAttribute("id")
+                navPills.forEach(pill => {
+                  pill.classList.remove("active")
+                  if (pill.getAttribute("href") === "#" + id) {
+                    pill.classList.add("active")
+                  }
+                })
+              }
+            })
+          },
+          {threshold: 0.5},
+        )
+
+        sections.forEach(section => observer.observe(section))
+      })
+    </script>
+  </body>
+</html>
