@@ -1183,6 +1183,16 @@ select.waitlist-input {
   text-align: center;
 }
 
+.frameworks-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  opacity: 0.5;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+}
+
 .frameworks-pills {
   display: flex;
   align-items: center;
