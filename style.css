@@ -769,12 +769,18 @@ select.waitlist-input {
 .btn-secondary-install {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-size: 13px;
-  font-weight: 400;
+  gap: 10px;
+  margin-top: 28px;
+  font-size: 18px;
+  font-weight: 500;
   color: var(--muted);
   text-decoration: none;
   transition: color 0.2s;
+  letter-spacing: -0.01em;
+}
+.btn-secondary-install svg {
+  width: 20px;
+  height: 20px;
 }
 .btn-secondary-install:hover {
   color: var(--text);
