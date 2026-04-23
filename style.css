@@ -698,6 +698,20 @@ select.waitlist-input {
   background: rgba(15, 40, 80, 0.4);
 }
 
+.btn-secondary-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.btn-secondary-install:hover {
+  color: var(--text);
+}
+
 .coords {
   margin: 28px auto 0;
   display: flex;
