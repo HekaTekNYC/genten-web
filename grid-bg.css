@@ -15,7 +15,7 @@
       var(--bg-mid, #030815) 55%,
       var(--bg-bot, #05102a) 100%
     );
-  overflow: hidden;
+  overflow: clip;
   isolation: isolate;
 }
 
