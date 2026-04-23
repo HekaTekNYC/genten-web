@@ -780,6 +780,24 @@ select.waitlist-input {
   color: var(--text);
 }
 
+.hero-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.5;
+  letter-spacing: 0.04em;
+}
+
 .coords {
   margin: 28px auto 0;
   display: flex;
