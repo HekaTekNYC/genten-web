@@ -48,8 +48,8 @@
     linear-gradient(to right, var(--grid-line, #3af2ffff) 1.5px, transparent 1.5px),
     linear-gradient(to bottom, var(--grid-line, #3afcffff) 1.5px, transparent 1.5px);
   background-size:
-    40px 35px,
-    40px 35px;
+    var(--grid-size, 40px) var(--grid-size, 40px),
+    var(--grid-size, 40px) var(--grid-size, 40px);
   /* semicircular horizon fadeout + curved dome falloff */
   mask-image:
     radial-gradient(

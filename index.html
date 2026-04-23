@@ -536,9 +536,15 @@
               <div class="feature-card-header">
                 <div class="feature-card-icon">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.8-1-2.5V5z"/>
-                    <path d="M2 9v1a2 2 0 0 0 2 2h1"/>
-                    <path d="M16 11h.01"/>
+                    <line x1="4" y1="21" x2="4" y2="14"/>
+                    <line x1="4" y1="10" x2="4" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="12"/>
+                    <line x1="12" y1="8" x2="12" y2="3"/>
+                    <line x1="20" y1="21" x2="20" y2="16"/>
+                    <line x1="20" y1="12" x2="20" y2="3"/>
+                    <line x1="1" y1="14" x2="7" y2="14"/>
+                    <line x1="9" y1="8" x2="15" y2="8"/>
+                    <line x1="17" y1="16" x2="23" y2="16"/>
                   </svg>
                 </div>
                 <h3>Budget Autopilot</h3>
@@ -552,57 +558,78 @@
         </section>
       </section>
 
-      <!-- Spending Section -->
+      <!-- Spending Section + Carousel -->
       <section class="dashboard-section fade-up">
         <h2>Your single source of truth.</h2>
         <p class="section-sub">Break down spend by agent, model, and time period. Know exactly where your budget is going before it's gone.</p>
-        <div class="dashboard-wrap">
-          <div class="dashboard">
-            <img
-              src="/assets/images/spending.png"
-              alt="Genten Spending Dashboard"
-              style="
-                width: 100%;
-                height: auto;
-                display: block;
-                border-radius: 16px;
-              "
-            />
+      </section>
+
+      <!-- 3D Turntable Carousel -->
+      <section class="turntable-section fade-up">
+        <div class="turntable-scene">
+          <div class="turntable" id="turntable">
+            <div class="turntable-card" data-pos="0">
+              <div class="turntable-face">
+                <img src="/assets/images/spending.png" alt="Spending Dashboard" style="width:100%;height:100%;object-fit:contain;border-radius:16px;display:block;background:#030815;"/>
+              </div>
+            </div>
+            <div class="turntable-card" data-pos="1">
+              <div class="turntable-face">
+                <div class="turntable-placeholder">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  <span>Cost Monitor</span>
+                </div>
+              </div>
+            </div>
+            <div class="turntable-card" data-pos="2">
+              <div class="turntable-face">
+                <div class="turntable-placeholder">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="6"/><circle cx="16" cy="12" r="2"/></svg>
+                  <span>Kill Switch</span>
+                </div>
+              </div>
+            </div>
+            <div class="turntable-card" data-pos="3">
+              <div class="turntable-face">
+                <div class="turntable-placeholder">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.8-1-2.5V5z"/></svg>
+                  <span>Budgets</span>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="turntable-dots" id="turntable-dots">
+          <span class="turntable-dot active"></span>
+          <span class="turntable-dot"></span>
+          <span class="turntable-dot"></span>
+          <span class="turntable-dot"></span>
         </div>
       </section>
 
-      <div class="proof-bar fade-up">
-        <div class="proof-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-          Self-hosted
-        </div>
-        <span class="proof-divider">·</span>
-        <div class="proof-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-          Beta Release
-        </div>
-        <span class="proof-divider">·</span>
-        <div class="proof-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-          </svg>
-          More implementations coming soon
-        </div>
-      </div>
-
       <footer class="footer">
-        <span class="footer-brand">Genten</span>
-        <nav class="footer-links">
-          <a href="/install/" class="footer-link">Docs</a>
-          <a href="https://github.com/HekaTekNYC" class="footer-link">GitHub</a>
-          <a href="mailto:athaykat@gmail.com" class="footer-link">Contact</a>
-        </nav>
-        <span class="footer-copyright">© 2026 HekaTek LLC</span>
+        <span class="footer-brand">
+          <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+            <path fill="currentColor" d="M19.039 11.459c.001.015.022.244.03.407.006.113 0 .29 0 .3.003 0 .029.023.03.024 1.428 1.17 2.943 2.767 3.204 3.94.073.325.056.618-.072.868-.152.293-.439.503-.834.638-2.046.7-6.925-.642-10.907-2.609-2.845-1.406-5.342-3.081-7.032-4.719-1.57-1.523-1.995-2.71-1.59-3.427.155-.271.42-.472.776-.609 1.299-.507 3.788-.152 6.239.579-1.16.866-1.968 2.034-2.342 3.202l-.001.007a.051.051 0 0 1-.001.006c-.115 1.07 1.434 2.47 3 3.25-.002-.006.084.032.084.026-.002-.006-.015-.109-.017-.113-.366-2.66 1.648-6.64 3.765-7.513.136-.056.254-.09.27-.095l-.273-.027c-.074-.006-.148-.013-.228-.015a7.464 7.464 0 0 0-.272-.01 6.443 6.443 0 0 0-3.4.892C5.378 5.057 2.383 4.892 1.13 5.31c-.497.167-.833.418-1 .751-.174.35-.175.79-.002 1.306.57 1.704 3.058 4.032 6.211 6.099.457 2.407 2.615 4.875 5.703 5.204l.142.015a.278.278 0 0 1 .05 0 6.618 6.618 0 0 0-.173-.132c-.955-.736-1.813-1.949-2.107-3l.185.093.143.07c4.985 2.465 10.215 3.72 12.53 2.947.519-.174.9-.418 1.075-.768.167-.335.139-.78-.029-1.278-.436-1.3-2.304-3.284-4.675-5.052a5.003 5.003 0 0 0-.145-.107"/>
+          </svg>
+          Genten
+        </span>
+        <div class="footer-center">
+          <span class="footer-proof-item">Self-hosted</span>
+          <span class="proof-divider">·</span>
+          <span class="footer-proof-item">Beta Release</span>
+          <span class="proof-divider">·</span>
+          <span class="footer-proof-item">More integrations coming</span>
+        </div>
+        <span class="footer-copyright">
+          <a href="mailto:athaykat@gmail.com" class="footer-contact">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Contact
+          </a>
+          © 2026 HekaTek LLC
+        </span>
       </footer>
     </div>
 
@@ -753,8 +780,8 @@
         saturnX: 0,
         saturnY: -2,
         saturnTilt: -15,
-        gridSize: 22,
-        gridGlow: 1,
+        gridSize: 18,
+        gridGlow: 1.8,
         rays: 0.5,
         headline: "See every <em>signal</em>,<br/>control every move.",
       } /*EDITMODE-END*/
@@ -874,6 +901,28 @@
       window.parent.postMessage({type: "__edit_mode_available"}, "*")
     </script>
     <script>
+      // 3D Turntable Carousel
+      (function() {
+        const turntable = document.getElementById('turntable');
+        const dots = document.querySelectorAll('.turntable-dot');
+        const cards = document.querySelectorAll('.turntable-card');
+        let current = 0;
+
+        function rotateTo(index) {
+          current = ((index % 4) + 4) % 4;
+          turntable.style.transform = `translate(-50%, -50%) rotateY(${-current * 90}deg)`;
+          dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        }
+
+        cards.forEach((card, i) => {
+          card.addEventListener('click', () => rotateTo(i));
+        });
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener('click', () => rotateTo(i));
+        });
+      })();
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
