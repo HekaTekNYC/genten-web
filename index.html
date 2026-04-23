@@ -379,9 +379,7 @@
         </div>
         <h1>See every <em>signal</em>,<br />control every move.</h1>
         <p class="sub">
-          Genten monitors AI agent costs in real time, lets you kill runaway
-          processes with one click, and blocks irreversible actions until you
-          approve them. Self-hosted, open integrations.
+          Monitor costs in real time, set budgets, log errors, kill runaway processes, and pull reports. All from one dashboard.
         </p>
         <div class="cta-row" id="waitlist">
           <form class="waitlist-form" onsubmit="handleWaitlistSubmit(event)">
@@ -476,9 +474,7 @@
       </section>
 
       <!-- Dashboard Section -->
-      <section class="dashboard-section">
-        <h2 class="dashboard-heading">One source of truth.</h2>
-        <p class="section-sub">All your agent activity, costs, and alerts in one place. No spreadsheets, no guessing.</p>
+      <section class="dashboard-section fade-up">
         <div class="dashboard-wrap">
           <div class="dashboard">
             <img
@@ -496,14 +492,14 @@
       </section>
 
       <!-- Features Section -->
-      <section class="integrations-section">
+      <section class="integrations-section fade-up">
         <h2>Built for what matters.</h2>
         <p class="section-sub">Three things that keep AI agent projects from going sideways: cost, control, and budget. We built exactly those.</p>
 
         <!-- Features -->
         <section class="features">
           <div class="features-inner">
-            <div class="feature-card">
+            <div class="feature-card fade-up">
               <div class="feature-card-header">
                 <div class="feature-card-icon">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -521,7 +517,7 @@
                 No surprises at end-of-month.
               </p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-up">
               <div class="feature-card-header">
                 <div class="feature-card-icon">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -536,7 +532,7 @@
                 terminal. Just hit the button.
               </p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-up">
               <div class="feature-card-header">
                 <div class="feature-card-icon">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -557,8 +553,8 @@
       </section>
 
       <!-- Spending Section -->
-      <section class="dashboard-section">
-        <h2>Every dollar, accounted for.</h2>
+      <section class="dashboard-section fade-up">
+        <h2>Your single source of truth.</h2>
         <p class="section-sub">Break down spend by agent, model, and time period. Know exactly where your budget is going before it's gone.</p>
         <div class="dashboard-wrap">
           <div class="dashboard">
@@ -576,7 +572,7 @@
         </div>
       </section>
 
-      <div class="proof-bar">
+      <div class="proof-bar fade-up">
         <div class="proof-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
@@ -876,6 +872,20 @@
         }
       })
       window.parent.postMessage({type: "__edit_mode_available"}, "*")
+    </script>
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     </script>
   </body>
 </html>
