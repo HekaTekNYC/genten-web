@@ -481,6 +481,61 @@ nav {
   gap: 32px;
 }
 
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 4px;
+}
+
+@media (max-width: 640px) {
+  nav {
+    position: relative;
+    background: rgb(6, 12, 26);
+    backdrop-filter: blur(16px);
+    padding: 18px 24px;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: rgb(6, 12, 26);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid #1c3359;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 24px;
+  }
+
+  .nav-links.open {
+    max-height: 300px;
+    padding: 8px 24px 20px;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(28, 51, 89, 0.5);
+    font-size: 15px;
+  }
+
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+}
+
 .nav-link {
   display: flex;
   align-items: center;
@@ -515,14 +570,6 @@ nav {
   height: 100%;
   display: block;
   color: #ffffff;
-}
-.nav-links {
-  display: flex;
-  gap: 36px;
-  font-size: 13px;
-  color: var(--muted);
-  font-weight: 400;
-  letter-spacing: 0.02em;
 }
 .nav-links a {
   color: inherit;
