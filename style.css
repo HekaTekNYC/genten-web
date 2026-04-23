@@ -596,7 +596,7 @@ h1 em {
   margin: 22px auto 0;
   max-width: 52ch;
   font-size: 17px;
-  line-height: 1.dd;
+  line-height: 1.65;
   color: var(--muted);
   font-weight: 300;
 }
