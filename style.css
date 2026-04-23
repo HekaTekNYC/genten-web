@@ -1249,7 +1249,7 @@ select.waitlist-input {
   letter-spacing: 0.15em;
   color: var(--muted);
   opacity: 0.5;
-  margin: 0 0 14px;
+  margin: 0 0 24px;
   text-transform: uppercase;
 }
 
@@ -1257,7 +1257,7 @@ select.waitlist-input {
   font-size: 11px;
   color: var(--muted);
   opacity: 0.4;
-  margin: 12px 0 0;
+  margin: 24px 0 0;
   letter-spacing: 0.04em;
 }
 
@@ -1462,6 +1462,32 @@ select.waitlist-input {
 }
 
 /* Dashboard section */
+.proof-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 40px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  opacity: 0.6;
+  letter-spacing: 0.04em;
+}
+
+.proof-divider {
+  color: var(--muted);
+  opacity: 0.3;
+}
+
 .dashboard-section {
   text-align: center;
   margin: 140px auto 40px;
