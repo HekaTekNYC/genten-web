@@ -1067,6 +1067,22 @@ select.waitlist-input {
   color: var(--text);
 }
 
+.footer-links {
+  display: flex;
+  gap: 28px;
+}
+
+.footer-link {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--text);
+}
+
 .footer-copyright {
   font-family: "Geist Mono", monospace;
   font-size: 10px;
