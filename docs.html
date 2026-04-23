@@ -633,6 +633,24 @@
     </div>
 
     <script>
+      // Forward outer-page scroll to iframe so mouse position doesn't matter
+      const guideWrap = document.querySelector(".guide-frame-wrap")
+
+      document.addEventListener("wheel", (e) => {
+        const frame = document.getElementById("guideFrame")
+        if (!frame || !frame.contentWindow) return
+
+        const wrapRect = guideWrap.getBoundingClientRect()
+        const iframeVisible = wrapRect.top < window.innerHeight && wrapRect.bottom > 0
+
+        if (iframeVisible) {
+          try {
+            frame.contentWindow.scrollBy({ top: e.deltaY, behavior: "auto" })
+            e.preventDefault()
+          } catch (err) {}
+        }
+      }, { passive: false })
+
       const pills = document.querySelectorAll(".guide-pill")
       const iframe = document.getElementById("guideFrame")
       const loader = document.getElementById("guideLoader")
