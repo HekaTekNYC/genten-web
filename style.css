@@ -1187,6 +1187,15 @@ select.waitlist-input {
   letter-spacing: -0.02em;
 }
 
+.integrations-section .section-sub {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 580px;
+  margin: 0 auto 48px;
+  font-weight: 300;
+}
+
 /* Frameworks section */
 .frameworks {
   padding: 0;
