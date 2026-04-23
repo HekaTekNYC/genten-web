@@ -1253,6 +1253,14 @@ select.waitlist-input {
   text-transform: uppercase;
 }
 
+.frameworks-more {
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.4;
+  margin: 12px 0 0;
+  letter-spacing: 0.04em;
+}
+
 .frameworks-pills {
   display: flex;
   align-items: center;
