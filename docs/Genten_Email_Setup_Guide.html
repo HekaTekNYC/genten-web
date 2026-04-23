@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Genten — Email Setup Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0a0f1e;
+  --bg-card: #0a1226;
+  --bg-card-alt: #050a18;
+  --bg-card-hover: #0e1a30;
+  --text-primary: #e8eef8;
+  --text-secondary: #9aa8c8;
+  --text-tertiary: #7080a0;
+  --border: rgba(28,51,89,0.8);
+  --border-soft: rgba(28,51,89,0.4);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.6);
+
+  --accent: #3ad4ff;
+  --accent-soft: #6ae2ff;
+  --warm: #E8B875;
+
+  --amethyst: #8b5cf6;
+  --amethyst-bg: rgba(139,92,246,0.12);
+  --amethyst-border: rgba(139,92,246,0.3);
+
+  --sapphire: #3b82f6;
+  --sapphire-bg: rgba(59,130,246,0.12);
+  --sapphire-border: rgba(59,130,246,0.3);
+
+  --emerald: #10b981;
+  --emerald-bg: rgba(16,185,129,0.12);
+  --emerald-border: rgba(16,185,129,0.3);
+
+  --topaz: #f59e0b;
+  --topaz-bg: rgba(245,158,11,0.12);
+  --topaz-border: rgba(245,158,11,0.3);
+
+  --ruby: #ef4444;
+  --ruby-bg: rgba(239,68,68,0.12);
+  --ruby-border: rgba(239,68,68,0.3);
+
+  --aqua: #06b6d4;
+  --aqua-bg: rgba(6,182,212,0.12);
+  --aqua-border: rgba(6,182,212,0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── Header ── */
+.guide-header {
+  background: linear-gradient(180deg, #020613 0%, #030815 50%, #05102a 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 56px 48px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.guide-header::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(58,212,255,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.guide-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at center, #3ad4ff 0.5px, transparent 1px),
+    linear-gradient(to right, #1a6fb822 1px, transparent 1px),
+    linear-gradient(to bottom, #1a6fb822 1px, transparent 1px);
+  background-size: 28px 28px, 28px 28px, 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 110%, #000 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 110%, #000 0%, transparent 100%);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.header-logo {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-bottom: 20px;
+  position: relative; z-index: 1;
+}
+.header-wordmark {
+  font-family: 'Figtree', sans-serif;
+  font-size: 22px; font-weight: 700; letter-spacing: 0.5px;
+  color: var(--text-primary); letter-spacing: -0.5px;
+}
+
+.header-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.25);
+  color: var(--emerald);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 999px;
+  margin-bottom: 20px;
+  font-family: 'Geist Mono', monospace;
+  position: relative; z-index: 1;
+}
+
+.guide-header h1 {
+  font-size: clamp(26px, 5vw, 40px); font-weight: 700;
+  letter-spacing: 0; margin-bottom: 12px;
+  color: var(--text-primary);
+  font-family: 'Figtree', sans-serif;
+  position: relative; z-index: 1;
+}
+.guide-header > p {
+  font-size: 16px; color: var(--text-secondary);
+  max-width: 560px; margin: 0 auto 28px;
+  line-height: 1.7;
+  position: relative; z-index: 1;
+}
+.prereq-bar {
+  display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.prereq-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12px; color: var(--text-secondary);
+  background: rgba(10,18,38,0.8);
+  border: 1px solid var(--border);
+  padding: 5px 12px; border-radius: 8px;
+  font-family: 'Geist Mono', monospace;
+}
+.prereq-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 6px var(--emerald);
+}
+
+/* ── Progress Nav ── */
+.progress-nav {
+  background: rgba(5,10,24,0.95);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  display: flex; gap: 0;
+  overflow-x: auto; scrollbar-width: none;
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(12px);
+}
+.progress-nav::-webkit-scrollbar { display: none; }
+.nav-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 16px;
+  font-size: 12px; font-weight: 500;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.15s;
+  font-family: 'Geist Mono', monospace;
+}
+.nav-pill:hover { color: var(--accent); }
+.nav-pill.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── Layout ── */
+.content {
+  max-width: 860px; margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+/* ── Section ── */
+.section { margin-bottom: 56px; }
+
+.step-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.step-number {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--accent);
+  color: #02050f; font-size: 15px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; box-shadow: 0 2px 12px rgba(58,212,255,0.3);
+}
+.step-number.warn { background: var(--ruby); color: #fff; box-shadow: 0 2px 12px rgba(239,68,68,0.3); }
+.step-number.security { background: var(--sapphire); color: #fff; box-shadow: 0 2px 12px rgba(59,130,246,0.3); }
+.step-number.help { background: var(--amethyst); color: #fff; box-shadow: 0 2px 12px rgba(139,92,246,0.3); }
+
+.step-header h2 { font-size: 22px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.3px; }
+.step-subtitle { font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; }
+
+/* ── Section label ── */
+.section-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-tertiary); margin: 28px 0 12px;
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Geist Mono', monospace;
+}
+.section-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+
+/* ── Code blocks ── */
+.code-block {
+  background: #0a1228;
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 18px;
+  margin: 12px 0; position: relative; overflow-x: auto;
+  box-shadow: var(--shadow-md);
+}
+.code-block pre {
+  font-family: 'Geist Mono', monospace;
+  font-size: 13px; color: var(--accent-soft);
+  white-space: pre-wrap; word-break: break-all; line-height: 1.6; margin: 0;
+  padding-right: 80px;
+}
+.copy-btn {
+  position: absolute; top: 10px; right: 12px;
+  background: rgba(58,212,255,0.08);
+  border: 1px solid rgba(58,212,255,0.2);
+  color: var(--accent-soft);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 5px; cursor: pointer; min-height: 28px;
+  font-family: 'Geist', sans-serif; transition: all 0.15s;
+}
+.copy-btn:hover { background: rgba(58,212,255,0.15); }
+.copy-btn.copied { color: #34d399; border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.1); }
+
+/* ── Info/warn/success/tip blocks ── */
+.warning-block, .info-block, .success-block, .tip-block {
+  display: flex; gap: 12px; padding: 14px 16px;
+  border-radius: 0 8px 8px 0; margin: 16px 0;
+  font-size: 13.5px; line-height: 1.6;
+}
+.warning-block { background: var(--topaz-bg); border: 1px solid var(--topaz-border); color: #d4a44a; border-left: 2px solid var(--topaz); }
+.info-block { background: var(--sapphire-bg); border: 1px solid var(--sapphire-border); color: #93b4f0; border-left: 2px solid var(--sapphire); }
+.success-block { background: var(--emerald-bg); border: 1px solid var(--emerald-border); color: #34d399; border-left: 2px solid var(--emerald); }
+.tip-block { background: rgba(58,212,255,0.06); border: 1px solid rgba(58,212,255,0.15); color: var(--accent-soft); border-left: 2px solid var(--accent); }
+
+.info-block code { background: rgba(59,130,246,0.15); color: #93b4f0; border-color: rgba(59,130,246,0.2); }
+.warning-block code { background: rgba(245,158,11,0.15); color: #fde68a; border-color: rgba(245,158,11,0.2); }
+.success-block code { background: rgba(16,185,129,0.15); color: #34d399; border-color: rgba(16,185,129,0.2); }
+.tip-block code { background: rgba(58,212,255,0.1); color: var(--accent); border-color: rgba(58,212,255,0.2); }
+
+/* ── Action blocks ── */
+.action-block {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 16px; margin: 12px 0;
+  background: rgba(58,212,255,0.04);
+  border-left: 2px solid rgba(58,212,255,0.3);
+  border-radius: 0 8px 8px 0;
+}
+.action-marker { color: var(--accent); font-weight: 700; font-size: 16px; flex-shrink: 0; line-height: 1.6; }
+.action-content { flex: 1; }
+.action-text { font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+.action-note { font-size: 12px; color: var(--text-secondary); margin: 0; }
+
+/* ── Inline code ── */
+code {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  background: rgba(28,51,89,0.6);
+  padding: 2px 6px; border-radius: 4px;
+  color: var(--accent-soft); font-weight: 500;
+  border: 1px solid rgba(28,51,89,0.8);
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 48px 0;
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="guide-header">
+  <div class="header-logo">
+    <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:0.9"><path fill="#D99A4A" d="M19.039 11.459c.001.015.022.244.03.407.006.113 0 .29 0 .3.003 0 .029.023.03.024 1.428 1.17 2.943 2.767 3.204 3.94.073.325.056.618-.072.868-.152.293-.439.503-.834.638-2.046.7-6.925-.642-10.907-2.609-2.845-1.406-5.342-3.081-7.032-4.719-1.57-1.523-1.995-2.71-1.59-3.427.155-.271.42-.472.776-.609 1.299-.507 3.788-.152 6.239.579-1.16.866-1.968 2.034-2.342 3.202l-.001.007a.051.051 0 0 1-.001.006c-.115 1.07 1.434 2.47 3 3.25-.002-.006.084.032.084.026-.002-.006-.015-.109-.017-.113-.366-2.66 1.648-6.64 3.765-7.513.136-.056.254-.09.27-.095l-.273-.027c-.074-.006-.148-.013-.228-.015a7.464 7.464 0 0 0-.272-.01 6.443 6.443 0 0 0-3.4.892C5.378 5.057 2.383 4.892 1.13 5.31c-.497.167-.833.418-1 .751-.174.35-.175.79-.002 1.306.57 1.704 3.058 4.032 6.211 6.099.457 2.407 2.615 4.875 5.703 5.204l.142.015a.278.278 0 0 1 .05 0 6.618 6.618 0 0 0-.173-.132c-.955-.736-1.813-1.949-2.107-3l.185.093.143.07c4.985 2.465 10.215 3.72 12.53 2.947.519-.174.9-.418 1.075-.768.167-.335.139-.78-.029-1.278-.436-1.3-2.304-3.284-4.675-5.052a5.003 5.003 0 0 0-.145-.107"/></svg>
+    <div class="header-wordmark">Genten</div>
+  </div>
+  <div class="header-badge">EMAIL SETUP</div>
+  <h1>Set Up Daily Email Briefings</h1>
+  <p>Get a daily summary of your agent activity sent to your inbox using your Gmail account.</p>
+  <div class="prereq-bar">
+    <div class="prereq-item">
+      <div class="prereq-dot"></div>
+      ~10 min setup
+    </div>
+    <div class="prereq-item">
+      <div class="prereq-dot"></div>
+      Gmail account required
+    </div>
+    <div class="prereq-item">
+      <div class="prereq-dot"></div>
+      2-Factor Authentication required
+    </div>
+  </div>
+</header>
+
+<!-- Progress Nav -->
+<nav class="progress-nav">
+  <a href="#what-this-does" class="nav-pill active">1. What This Does</a>
+  <a href="#requirements" class="nav-pill">2. Requirements</a>
+  <a href="#enable-2fa" class="nav-pill">3. Enable 2FA</a>
+  <a href="#generate-app-password" class="nav-pill">4. App Password</a>
+  <a href="#add-to-genten" class="nav-pill">5. Add to Genten</a>
+  <a href="#restart-genten" class="nav-pill">6. Restart</a>
+  <a href="#test" class="nav-pill">7. Test</a>
+  <a href="#troubleshooting" class="nav-pill">8. Troubleshoot</a>
+  <a href="#security" class="nav-pill">9. Security</a>
+  <a href="#help" class="nav-pill">10. Help</a>
+</nav>
+
+<!-- Content -->
+<div class="content">
+
+<!-- Section 1: What This Does -->
+<section id="what-this-does" class="section">
+  <div class="step-header">
+    <div class="step-number">1</div>
+    <h2>What This Does</h2>
+  </div>
+  <p class="step-subtitle">
+    Genten sends you a daily briefing of your agent activity by email. To do that, it needs permission to send email on your behalf through your own Gmail account. This guide walks you through giving it that permission.
+  </p>
+
+  <div class="info-block">
+    <strong>You will NOT be sharing your main Gmail password.</strong> Google has a special feature called "App Passwords" that creates a unique code just for Genten. This code only works for sending email — it can't access anything else in your Google account.
+  </div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-top: 20px;">
+    Once configured, Genten will send a daily briefing at the time you specify in your settings (default is 8:00 AM UTC). The briefing includes:
+  </p>
+
+  <ul style="color: var(--text-secondary); font-size: 14px; margin: 12px 0 0 24px; line-height: 1.8;">
+    <li>Which agents were active in the last 24 hours</li>
+    <li>Total API calls and spending by agent</li>
+    <li>Any errors or warnings that need your attention</li>
+    <li>Tasks waiting for your review or approval</li>
+  </ul>
+</section>
+
+<div class="divider"></div>
+
+<!-- Section 2: What You Need Before Starting -->
+<section id="requirements" class="section">
+  <div class="step-header">
+    <div class="step-number">2</div>
+    <h2>What You Need Before Starting</h2>
+  </div>
+  <p class="step-subtitle">
+    Make sure you have these before continuing.
+  </p>
+
+  <div class="prereq-bar" style="justify-content: flex-start; margin-top: 20px;">
+    <div class="prereq-item">
+      <div class="prereq-dot"></div>
+      A Gmail account (personal or Workspace)
+    </div>
+    <div class="prereq-item">
+      <div class="prereq-dot"></div>
+      10 minutes
+    </div>
+    <div class="prereq-item">
+      <div class="prereq-dot"></div>
+      Genten already installed
+    </div>
+  </div>
+
+  <div class="tip-block" style="margin-top: 24px;">
+    If you don't have a Gmail account yet, you'll need to create one at <a href="https://gmail.com" target="_blank" style="color: var(--accent); text-decoration: none;">gmail.com</a> before continuing. Both personal Gmail accounts and Google Workspace accounts work with Genten.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Section 3: Turn On 2-Step Verification -->
+<section id="enable-2fa" class="section">
+  <div class="step-header">
+    <div class="step-number">3</div>
+    <h2>Turn On 2-Step Verification</h2>
+  </div>
+  <p class="step-subtitle">
+    Google requires 2-Step Verification (also called 2FA) to be turned on before it will let you generate an App Password. This is a Google security rule, not a Genten one.
+  </p>
+
+  <div class="info-block">
+    <strong>Already have 2-Step Verification turned on?</strong> Follow the verification steps below to confirm it's active before continuing to Section 4. This prevents errors at the App Passwords page.
+  </div>
+
+  <div class="section-label">Check If 2-Step Verification Is Active</div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Go to your Google Account Security page</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <pre>https://myaccount.google.com/security</pre>
+  </div>
+
+  <!-- SCREENSHOT: Google Account Security page -->
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Scroll to "How you sign in to Google"</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Look for "2-Step Verification"</div>
+      <div class="action-note">If it says "On" or shows your phone number, you're all set — skip to Section 4. If it says "Off", continue below.</div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT: 2-Step Verification section showing "On" status -->
+
+  <div class="section-label">Turn On 2-Step Verification (If Not Already Enabled)</div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Click "2-Step Verification"</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Click "Get Started"</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Follow Google's prompts to set it up</div>
+      <div class="action-note">Google will typically ask for your phone number and send you a verification code. This usually takes 2-3 minutes.</div>
+    </div>
+  </div>
+
+  <div class="success-block">
+    <strong>2-Step Verification is now active.</strong> You're ready to generate an App Password in the next section.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Section 4: Generate an App Password -->
+<section id="generate-app-password" class="section">
+  <div class="step-header">
+    <div class="step-number">4</div>
+    <h2>Generate an App Password</h2>
+  </div>
+  <p class="step-subtitle">
+    An App Password is a 16-character code that acts like a temporary password, but only for one specific app — in this case, Genten. It doesn't give access to anything else in your Google account.
+  </p>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Go to Google's App Passwords page</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <pre>https://myaccount.google.com/apppasswords</pre>
+  </div>
+
+  <!-- SCREENSHOT: App Passwords page -->
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">If Google asks you to sign in again, do so</div>
+      <div class="action-note">This is normal for security-sensitive pages.</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">In the "App name" field, type: <code>Genten</code></div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT: App Passwords page with "Genten" typed in the name field -->
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Click "Create"</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Google will show you a 16-character code</div>
+      <div class="action-note">It will look like this: <code>abcd efgh ijkl mnop</code></div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT: Generated 16-character App Password displayed -->
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Copy this code — you'll need it in the next section</div>
+    </div>
+  </div>
+
+  <div class="warning-block">
+    <strong>Save this code somewhere safe right now.</strong> Google will NOT show it to you again after closing this window. If you lose it, you'll have to generate a new one. A password manager is a great place to store it.
+  </div>
+
+  <div class="section-label">Common Error</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    <strong>Problem:</strong> "I don't see an 'App Passwords' option."
+  </p>
+
+  <p style="color: var(--text-secondary); font-size: 14px;">
+    <strong>Solution:</strong> This usually means 2-Step Verification isn't turned on yet. Go back to Section 3 and enable it first. After enabling 2FA, wait a minute and then try accessing the App Passwords page again.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- Section 5: Add Your App Password to Genten -->
+<section id="add-to-genten" class="section">
+  <div class="step-header">
+    <div class="step-number">5</div>
+    <h2>Add Your App Password to Genten</h2>
+  </div>
+  <p class="step-subtitle">
+    Now we need to tell Genten about your Gmail account and the App Password you just created. This is done by editing the <code>.env</code> file in the folder where you installed Genten.
+  </p>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Find the folder where you installed Genten</div>
+      <div class="action-note">This is the folder that contains your <code>.env</code> file and <code>docker-compose.yml</code> file (if you're using Docker).</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Open the <code>.env</code> file in a text editor</div>
+      <div class="action-note">On Mac: TextEdit. On Windows: Notepad. Remember to show hidden files if you don't see the <code>.env</code> file — press Cmd+Shift+. in Finder (Mac) or enable "Show hidden files" in File Explorer (Windows).</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Find the email configuration section</div>
+      <div class="action-note">It will have these lines (or you'll need to add them):</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <pre>GMAIL_APP_PASSWORD=
+BRIEFING_RECIPIENT=</pre>
+  </div>
+
+  <div class="section-label">Fill In Your Email Settings</div>
+
+  <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 16px 0;">
+    <div style="margin-bottom: 16px;">
+      <code style="display: block; margin-bottom: 6px;">GMAIL_APP_PASSWORD=</code>
+      <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">
+        Paste the 16-character App Password from Section 4 here. You can remove the spaces or leave them — both work. No quotes needed.
+      </p>
+      <p style="font-size: 13px; color: var(--text-secondary); margin: 8px 0 0;">
+        <strong>Example:</strong> <code>GMAIL_APP_PASSWORD=abcdefghijklmnop</code>
+      </p>
+    </div>
+
+    <div style="margin-bottom: 0;">
+      <code style="display: block; margin-bottom: 6px;">BRIEFING_RECIPIENT=</code>
+      <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">
+        The email address where you want to receive the daily briefing. This can be your Gmail address or any other email you prefer.
+      </p>
+      <p style="font-size: 13px; color: var(--text-secondary); margin: 8px 0 0;">
+        <strong>Example:</strong> <code>BRIEFING_RECIPIENT=you@example.com</code>
+      </p>
+    </div>
+  </div>
+
+  <div class="tip-block">
+    The <code>.env</code> file doesn't use quotes around values. Just paste them in directly after the equals sign.
+  </div>
+
+  <div class="action-block" style="margin-top: 24px;">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Save the <code>.env</code> file</div>
+    </div>
+  </div>
+
+  <div class="success-block">
+    <strong>Email settings saved.</strong> Now you need to restart Genten for the changes to take effect.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Section 6: Restart Genten -->
+<section id="restart-genten" class="section">
+  <div class="step-header">
+    <div class="step-number">6</div>
+    <h2>Restart Genten to Apply Changes</h2>
+  </div>
+  <p class="step-subtitle">
+    Genten reads the <code>.env</code> file when it starts up, so you need to restart it for the new email settings to take effect.
+  </p>
+
+  <div class="section-label">If You're Using Docker</div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Open Terminal (Mac) or PowerShell (Windows)</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Navigate to your genten folder</div>
+      <div class="action-note">Use <code>cd</code> to change directories. For example: <code>cd ~/Desktop/genten</code></div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Stop Genten</div>
+      <div class="action-note">If Genten is running in the foreground, press <code>Ctrl+C</code>. If it's running in detached mode, run:</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <pre>docker compose down</pre>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Start Genten again</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <pre>docker compose up</pre>
+  </div>
+
+  <div class="section-label">If You're Using npm</div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Stop the server with <code>Ctrl+C</code> in the terminal where Genten is running</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Restart it</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <pre>npm run dev</pre>
+  </div>
+
+  <div class="section-label">What to Look For</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    Watch the logs as Genten starts. You should see a message that looks like:
+  </p>
+
+  <div class="code-block" style="background: #0a1228; border: 1px solid var(--border);">
+    <pre style="color: #34d399;">[mailer] Email briefings enabled
+[mailer] Briefing recipient: you@example.com</pre>
+  </div>
+
+  <div class="success-block">
+    <strong>Email settings loaded successfully.</strong> Genten is now ready to send daily briefings.
+  </div>
+
+  <div class="warning-block">
+    <strong>See an error about Gmail?</strong> This usually means the App Password was pasted incorrectly. Double-check that there are no extra spaces or quotes in your <code>.env</code> file and restart Genten again.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Section 7: Test That It's Working -->
+<section id="test" class="section">
+  <div class="step-header">
+    <div class="step-number">7</div>
+    <h2>Test That It's Working</h2>
+  </div>
+  <p class="step-subtitle">
+    Send a test email to confirm everything is configured correctly.
+  </p>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Open Genten in your browser</div>
+      <div class="action-note">Usually at <code>http://localhost:3001</code></div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Go to Settings (click the gear icon in the sidebar)</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Scroll to the "Email Configuration" section</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Click "Send Test Email"</div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT: Settings page with Email Configuration section and Send Test Email button -->
+
+  <div class="section-label">What You Should See</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    Within 30 seconds, a test email should arrive at your <code>BRIEFING_RECIPIENT</code> address.
+  </p>
+
+  <div class="success-block">
+    <strong>Test email received!</strong> Your email setup is working correctly. Genten will now send daily briefings at your configured time (default is 8:00 AM UTC).
+  </div>
+
+  <div class="section-label">Common Problems</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    <strong>No email arrives after 2 minutes:</strong>
+  </p>
+
+  <ul style="color: var(--text-secondary); font-size: 14px; margin: 12px 0 0 24px; line-height: 1.8;">
+    <li><strong>Check your spam folder</strong> — first-time emails from Genten may land there</li>
+    <li><strong>Check Genten's logs</strong> for error messages about Gmail authentication</li>
+    <li><strong>Verify the BRIEFING_RECIPIENT email</strong> is correct in your <code>.env</code> file</li>
+  </ul>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin: 20px 0 12px;">
+    <strong>Error: "Username and Password not accepted"</strong>
+  </p>
+
+  <p style="color: var(--text-secondary); font-size: 14px;">
+    The App Password was typed incorrectly. Generate a new App Password in Section 4 and update your <code>.env</code> file.
+  </p>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin: 20px 0 12px;">
+    <strong>Error: "Invalid login"</strong>
+  </p>
+
+  <p style="color: var(--text-secondary); font-size: 14px;">
+    The App Password doesn't match the Gmail account. Make sure you're using the same Gmail account for both generating the App Password and the <code>BRIEFING_RECIPIENT</code> setting.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- Section 8: Common Problems and Fixes -->
+<section id="troubleshooting" class="section">
+  <div class="step-header">
+    <div class="step-number warn">8</div>
+    <h2>Common Problems and Fixes</h2>
+  </div>
+  <p class="step-subtitle">
+    Quick solutions to the most common email setup issues.
+  </p>
+
+  <div class="section-label">I forgot to save my App Password and closed the window</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    <strong>Solution:</strong> Generate a new one. Go back to Section 4, visit the App Passwords page, and create a new App Password called "Genten" (or "Genten 2" if you want to keep track). The old one won't work anymore once you create a new one.
+  </p>
+
+  <div class="section-label">Emails land in my spam folder</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    <strong>Solution:</strong> This is normal for first-time emails from a new sender. Mark the first briefing email as "Not Spam" to train your email filter. Future briefings should go to your inbox.
+  </p>
+
+  <div class="section-label">I want to turn off email briefings</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    <strong>Solution:</strong> Open your <code>.env</code> file, remove the <code>GMAIL_APP_PASSWORD=</code> line (or leave it blank), and restart Genten. Briefings will still be stored in your dashboard but won't be emailed.
+  </p>
+
+  <div class="section-label">I want to use a different email provider (not Gmail)</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    <strong>Solution:</strong> Currently Genten only supports Gmail SMTP for email briefings. Support for other providers (like Resend) is planned for v1.1.
+  </p>
+
+  <div class="section-label">I want to change the time briefings are sent</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    <strong>Solution:</strong> Add this line to your <code>.env</code> file and restart Genten:
+  </p>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <pre>BRIEFING_HOUR=14</pre>
+  </div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-top: 12px;">
+    The number is the hour in UTC (0-23). For example, <code>14</code> = 2:00 PM UTC. To convert your local time to UTC, check <a href="https://www.timeanddate.com/worldclock/converter.html" target="_blank" style="color: var(--accent); text-decoration: none;">timeanddate.com</a>.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- Section 9: Security Notes -->
+<section id="security" class="section">
+  <div class="step-header">
+    <div class="step-number security">9</div>
+    <h2>Security Notes</h2>
+  </div>
+  <p class="step-subtitle">
+    How App Passwords work and what they can (and can't) do.
+  </p>
+
+  <div class="info-block">
+    <strong>App Passwords only work for the one app you named them for.</strong> Someone with this code cannot log into your Google account, read your email, or access your other Google data. It's strictly for sending email on behalf of the app you authorized — in this case, Genten.
+  </div>
+
+  <div class="section-label">Revoking Access</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    If you want to revoke Genten's access to send email at any time:
+  </p>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Go to <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color: var(--accent); text-decoration: none;">myaccount.google.com/apppasswords</a></div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Find the "Genten" entry in the list</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Click the trash icon to delete it</div>
+    </div>
+  </div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-top: 16px;">
+    Genten will stop being able to send emails immediately. You'll see errors in the Genten logs the next time it tries to send a briefing.
+  </p>
+
+  <div class="section-label">Where the App Password Is Stored</div>
+
+  <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
+    The App Password is stored in your <code>.env</code> file on your own computer. It never leaves your machine. Genten doesn't send it to any external service — it only uses it to authenticate with Gmail's SMTP servers when sending your briefings.
+  </p>
+
+  <div class="success-block">
+    <strong>Your email is secure.</strong> App Passwords are designed to be safer than sharing your real Gmail password. They can be revoked at any time without affecting your main account.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Section 10: Get Help -->
+<section id="help" class="section">
+  <div class="step-header">
+    <div class="step-number help">10</div>
+    <h2>Where to Get Help</h2>
+  </div>
+  <p class="step-subtitle">
+    We're here to help you get email briefings working.
+  </p>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Check the <a href="./Genten_FAQ.html" style="color: var(--accent); text-decoration: none;">Frequently Asked Questions</a></div>
+      <div class="action-note">Covers common questions about Genten features, costs, and troubleshooting</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Email us at <a href="mailto:help@genten.io" style="color: var(--accent); text-decoration: none;">help@genten.io</a></div>
+      <div class="action-note">We respond to support emails during business hours (US Eastern Time)</div>
+    </div>
+  </div>
+
+  <div class="action-block">
+    <div class="action-marker">→</div>
+    <div class="action-content">
+      <div class="action-text">Use the feedback button in the Genten dashboard</div>
+      <div class="action-note">Click the feedback icon in the bottom-right corner to send us a message directly from the app</div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <strong>Soft-launch period:</strong> Genten is currently in soft launch. All feedback submitted through the dashboard routes directly to the HekaTek team. We read every message and use it to improve Genten.
+  </div>
+
+  <div class="success-block" style="margin-top: 32px;">
+    <strong>You're all set!</strong> Daily email briefings are now configured. You'll receive your first briefing at your configured time (default is 8:00 AM UTC).
+  </div>
+</section>
+
+</div>
+
+<!-- JavaScript -->
+<script>
+// Copy code button functionality
+function copyCode(btn) {
+  const pre = btn.nextElementSibling;
+  navigator.clipboard.writeText(pre.textContent).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Progress nav active state on scroll
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.section');
+  const navPills = document.querySelectorAll('.nav-pill');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navPills.forEach(pill => {
+          pill.classList.remove('active');
+          if (pill.getAttribute('href') === '#' + id) {
+            pill.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  sections.forEach(section => observer.observe(section));
+});
+</script>
+
+</body>
+</html>
