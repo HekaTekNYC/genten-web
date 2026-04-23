@@ -1238,8 +1238,18 @@ select.waitlist-input {
 
 @media (max-width: 480px) {
   .frameworks-pills {
-    flex-direction: column;
-    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  .framework-pill {
+    gap: 5px;
+    padding: 6px 10px;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+  }
+  .framework-pill-icon {
+    width: 14px;
+    height: 14px;
   }
 }
 
