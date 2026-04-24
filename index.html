@@ -713,62 +713,50 @@
             </div>
             <div class="turntable-card" data-pos="1">
               <div class="turntable-face">
-                <div class="turntable-placeholder">
-                  <svg
-                    width="36"
-                    height="36"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                  </svg>
-                  <span>Cost Monitor</span>
-                </div>
+                <img
+                  src="/assets/images/killswitch.png"
+                  alt="Kill Switch Dashboard"
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    border-radius: 16px;
+                    display: block;
+                    background: #030815;
+                  "
+                />
               </div>
             </div>
             <div class="turntable-card" data-pos="2">
               <div class="turntable-face">
-                <div class="turntable-placeholder">
-                  <svg
-                    width="36"
-                    height="36"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <rect width="20" height="12" x="2" y="6" rx="6" />
-                    <circle cx="16" cy="12" r="2" />
-                  </svg>
-                  <span>Kill Switch</span>
-                </div>
+                <img
+                  src="/assets/images/workflow.png"
+                  alt="Workflow Dashboard"
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    border-radius: 16px;
+                    display: block;
+                    background: #030815;
+                  "
+                />
               </div>
             </div>
             <div class="turntable-card" data-pos="3">
               <div class="turntable-face">
-                <div class="turntable-placeholder">
-                  <svg
-                    width="36"
-                    height="36"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.8-1-2.5V5z"
-                    />
-                  </svg>
-                  <span>Budgets</span>
-                </div>
+                <img
+                  src="/assets/images/briefing.png"
+                  alt="Briefing Dashboard"
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    border-radius: 16px;
+                    display: block;
+                    background: #030815;
+                  "
+                />
               </div>
             </div>
           </div>
@@ -1114,11 +1102,22 @@
         const cards = document.querySelectorAll(".turntable-card")
         const scene = document.querySelector(".turntable-scene")
         let current = 0
+        let currentRotation = 0
         let autoTimer = null
 
         function rotateTo(index) {
-          current = ((index % 4) + 4) % 4
-          turntable.style.transform = `translate(-50%, -50%) rotateY(${-current * 90}deg)`
+          const targetIndex = ((index % 4) + 4) % 4
+          const targetAngle = -targetIndex * 90
+
+          // Calculate shortest angular path
+          let delta = targetAngle - (currentRotation % 360)
+          if (delta > 180) delta -= 360
+          if (delta < -180) delta += 360
+
+          currentRotation += delta
+          current = targetIndex
+
+          turntable.style.transform = `translate(-50%, -50%) rotateY(${currentRotation}deg)`
           dots.forEach((d, i) => d.classList.toggle("active", i === current))
         }
 

@@ -1103,7 +1103,7 @@ select.waitlist-input {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-top: 32px;
+  margin-top: 60px;
 }
 
 .turntable-dot {
