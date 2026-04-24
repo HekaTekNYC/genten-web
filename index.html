@@ -1104,6 +1104,7 @@
         let current = 0
         let currentRotation = 0
         let autoTimer = null
+        let restartTimer = null
 
         function rotateTo(index) {
           const targetIndex = ((index % 4) + 4) % 4
@@ -1122,27 +1123,30 @@
         }
 
         function startAuto() {
-          autoTimer = setInterval(() => rotateTo(current + 1), 4000)
+          clearInterval(autoTimer)
+          autoTimer = setInterval(() => rotateTo(current + 1), 6000)
         }
 
         function stopAuto() {
           clearInterval(autoTimer)
+          clearTimeout(restartTimer)
           autoTimer = null
+          restartTimer = null
         }
 
         cards.forEach((card, i) => {
-          card.addEventListener("click", () => { stopAuto(); rotateTo(i); startAuto() })
+          card.addEventListener("click", () => { stopAuto(); rotateTo(i); restartTimer = setTimeout(() => startAuto(), 8000) })
         })
 
         dots.forEach((dot, i) => {
-          dot.addEventListener("click", () => { stopAuto(); rotateTo(i); startAuto() })
+          dot.addEventListener("click", () => { stopAuto(); rotateTo(i); restartTimer = setTimeout(() => startAuto(), 8000) })
         })
 
-        document.getElementById("turntable-prev").addEventListener("click", () => { stopAuto(); rotateTo(current - 1); startAuto() })
-        document.getElementById("turntable-next").addEventListener("click", () => { stopAuto(); rotateTo(current + 1); startAuto() })
+        document.getElementById("turntable-prev").addEventListener("click", () => { stopAuto(); rotateTo(current - 1); restartTimer = setTimeout(() => startAuto(), 8000) })
+        document.getElementById("turntable-next").addEventListener("click", () => { stopAuto(); rotateTo(current + 1); restartTimer = setTimeout(() => startAuto(), 8000) })
 
         scene.addEventListener("mouseenter", stopAuto)
-        scene.addEventListener("mouseleave", startAuto)
+        scene.addEventListener("mouseleave", () => { stopAuto(); startAuto() })
 
         startAuto()
       })()

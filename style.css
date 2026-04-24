@@ -1023,6 +1023,7 @@ select.waitlist-input {
   perspective-origin: 50% 40%;
   height: 520px;
   position: relative;
+  pointer-events: none;
 }
 
 .turntable {
@@ -1034,6 +1035,7 @@ select.waitlist-input {
   transform-style: preserve-3d;
   transform: translate(-50%, -50%) rotateY(0deg);
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: auto;
 }
 
 .turntable-card {
