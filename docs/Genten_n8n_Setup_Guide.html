@@ -110,15 +110,20 @@ body {
  
 .header-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(245,158,11,0.1);
-  border: 1px solid rgba(245,158,11,0.25);
-  color: var(--topaz);
+  background: rgba(167,139,250,0.1);
+  border: 1px solid rgba(167,139,250,0.25);
+  color: #a78bfa;
   font-size: 11px; font-weight: 600;
   letter-spacing: 1.5px; text-transform: uppercase;
   padding: 5px 14px; border-radius: 999px;
   margin-bottom: 20px;
   font-family: 'Geist Mono', monospace;
   position: relative; z-index: 1;
+}
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
  
 .guide-header h1 {
@@ -600,7 +605,10 @@ a { color: var(--accent); }
  
 <!-- ── Header ── -->
 <div class="guide-header">
-  <div class="header-badge">⬡ n8n Integration</div>
+  <div class="header-badge">
+    <span class="badge-dot" style="background: #a78bfa; box-shadow: 0 0 6px #a78bfa;"></span>
+    n8n Setup
+  </div>
   <h1>Connect n8n to Genten</h1>
   <p>Send workflow events from n8n to your Genten dashboard and chat with your workflows in real time.</p>
   <div class="prereq-bar">

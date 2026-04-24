@@ -275,6 +275,25 @@
         display: block;
       }
 
+      @keyframes gem-glow-pulse {
+        0%, 100% {
+          box-shadow:
+            0 0 12px var(--gem-glow),
+            inset 0 0 8px var(--gem-glow);
+          background: rgba(255, 255, 255, 0.04);
+        }
+        50% {
+          box-shadow:
+            0 0 20px var(--gem-glow),
+            inset 0 0 14px var(--gem-glow);
+          background: rgba(255, 255, 255, 0.07);
+        }
+      }
+
+      .guide-pill.active {
+        animation: gem-glow-pulse 2.5s ease-in-out infinite;
+      }
+
       @media (max-width: 768px) {
         .guide-pills {
           gap: 8px;

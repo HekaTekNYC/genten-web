@@ -107,13 +107,16 @@ body {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(16,185,129,0.1);
   border: 1px solid rgba(16,185,129,0.25);
-  color: var(--emerald);
+  color: #10b981;
   font-size: 11px; font-weight: 600;
   letter-spacing: 1.5px; text-transform: uppercase;
   padding: 5px 14px; border-radius: 999px;
   margin-bottom: 20px;
   font-family: 'Geist Mono', monospace;
   position: relative; z-index: 1;
+}
+.badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
 }
 
 .guide-header h1 {
@@ -287,7 +290,10 @@ code {
 
 <!-- Header -->
 <header class="guide-header">
-  <div class="header-badge">EMAIL SETUP</div>
+  <div class="header-badge">
+    <span class="badge-dot" style="background: #10b981; box-shadow: 0 0 6px #10b981;"></span>
+    Email Setup
+  </div>
   <h1>Set Up Daily Email Briefings</h1>
   <p>Get a daily summary of your agent activity sent to your inbox using your Gmail account.</p>
   <div class="prereq-bar">

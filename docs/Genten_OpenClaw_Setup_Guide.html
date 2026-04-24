@@ -96,12 +96,17 @@ body {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(58,212,255,0.08);
   border: 1px solid rgba(58,212,255,0.2);
-  color: var(--accent);
+  color: #3ad4ff;
   font-size: 11px; font-weight: 600;
   letter-spacing: 1.5px; text-transform: uppercase;
   padding: 5px 14px; border-radius: 999px;
   margin-bottom: 20px;
   font-family: 'Geist Mono', monospace;
+}
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
 .guide-header h1 {
   font-size: clamp(26px, 5vw, 40px); font-weight: 700;
@@ -696,7 +701,10 @@ a { color: var(--accent); }
  
 <!-- ── Header ── -->
 <div class="guide-header">
-  <div class="header-badge">⬡ OpenClaw Integration</div>
+  <div class="header-badge">
+    <span class="badge-dot" style="background: #3ad4ff; box-shadow: 0 0 6px #3ad4ff;"></span>
+    OpenClaw Setup
+  </div>
   <h1>Connect OpenClaw to Genten</h1>
   <p>A complete walkthrough — from zero to a live, chatting AI agent in your dashboard. Every screen, every prompt, every hiccup covered.</p>
   <div class="prereq-bar">

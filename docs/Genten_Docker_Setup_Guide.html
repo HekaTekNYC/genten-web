@@ -143,13 +143,19 @@
         letter-spacing: -0.5px;
       }
 
+      .badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+      }
+
       .header-badge {
         display: inline-flex;
         align-items: center;
         gap: 8px;
         background: rgba(59, 130, 246, 0.1);
         border: 1px solid rgba(59, 130, 246, 0.25);
-        color: var(--sapphire);
+        color: #3b82f6;
         font-size: 11px;
         font-weight: 600;
         letter-spacing: 1.5px;
@@ -525,7 +531,10 @@
   <body>
     <!-- Header -->
     <header class="guide-header">
-      <div class="header-badge">DOCKER SETUP</div>
+      <div class="header-badge">
+        <span class="badge-dot" style="background: #3b82f6; box-shadow: 0 0 6px #3b82f6;"></span>
+        Genten Install
+      </div>
       <h1>Get Genten Running with Docker</h1>
       <p>Self-hosted AI monitoring in about 15 minutes. No coding required.</p>
       <div class="prereq-bar">
