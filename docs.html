@@ -643,7 +643,13 @@
         const wrapRect = guideWrap.getBoundingClientRect()
         const iframeVisible = wrapRect.top < window.innerHeight && wrapRect.bottom > 0
 
-        if (iframeVisible) {
+        // Check if mouse is over the iframe container
+        const mouseOverIframe = e.clientX >= wrapRect.left &&
+                               e.clientX <= wrapRect.right &&
+                               e.clientY >= wrapRect.top &&
+                               e.clientY <= wrapRect.bottom
+
+        if (iframeVisible && mouseOverIframe) {
           try {
             frame.contentWindow.scrollBy({ top: e.deltaY, behavior: "auto" })
             e.preventDefault()
