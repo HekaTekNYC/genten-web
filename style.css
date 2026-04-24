@@ -1021,9 +1021,11 @@ select.waitlist-input {
 .turntable-scene {
   perspective: 1200px;
   perspective-origin: 50% 40%;
-  height: 520px;
+  height: 700px;
   position: relative;
   pointer-events: none;
+  transform: scale(1.3);
+  transform-origin: center center;
 }
 
 .turntable {
@@ -1105,12 +1107,12 @@ select.waitlist-input {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
 .turntable-dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: rgba(58, 212, 255, 0.25);
   cursor: pointer;
