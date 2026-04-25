@@ -1051,14 +1051,24 @@ select.waitlist-input {
   position: relative;
   z-index: 1;
   overflow: hidden;
+  margin-top: 100px;
 }
 
-.turntable-heading {
+.turntable-section h2 {
   font-size: 36px;
   font-weight: 600;
   color: var(--text);
   letter-spacing: -0.02em;
-  margin-bottom: 60px;
+  margin-bottom: 12px;
+}
+
+.turntable-section .section-sub {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 60px;
+  font-weight: 300;
 }
 
 .turntable-scene {
@@ -1391,7 +1401,6 @@ select.waitlist-input {
   font-weight: 600;
   letter-spacing: 0.15em;
   color: var(--muted);
-  opacity: 0.5;
   margin: 0 0 24px;
   text-transform: uppercase;
 }
