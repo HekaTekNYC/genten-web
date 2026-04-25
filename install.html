@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Install Genten | Self-Hosted AI Agent Monitoring</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Install Genten in 15 minutes. Self-hosted AI agent monitoring with Docker. No coding required." />
+    <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicons/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicons/apple-touch-icon.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="grid-bg.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .install-stage {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .install-stage .footer {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .install-container {
+        position: relative;
+        z-index: 100;
+        flex: 1;
+        max-width: 1400px;
+        margin: 80px auto 0;
+        padding: 0 40px 60px;
+        width: 100%;
+      }
+
+      .install-frame-wrap {
+        border-radius: 16px;
+        overflow: hidden;
+        background: linear-gradient(180deg, #0a1226 0%, #050a18 100%);
+        border: 1px solid #1c3359;
+        box-shadow:
+          0 0 0 1px #3ad4ff0a,
+          0 20px 50px -20px #00000088;
+        height: calc(100vh - 120px);
+        min-height: 800px;
+        position: relative;
+      }
+
+      .install-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .install-container {
+          padding: 0 24px 40px;
+        }
+
+        .install-frame-wrap {
+          height: calc(100vh - 200px);
+          min-height: 500px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage install-stage genten-stage">
+      <!-- Saturn with rings, upper right -->
+      <div
+        class="saturn"
+        aria-hidden="true"
+        style="
+          opacity: var(--saturn-opacity, 0.1);
+          transform: scale(var(--saturn-scale, 1));
+          transform-origin: top right;
+          --warm: #ffffff;
+          --saturn-ring: #ffffff;
+        "
+      >
+        <svg viewBox="0 0 800 800" fill="none">
+          <defs>
+            <radialGradient id="saturnBody" cx="0.42" cy="0.38" r="0.62">
+              <stop offset="0%" stop-color="var(--warm)" stop-opacity="0.95" />
+              <stop
+                offset="55%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0.55"
+              />
+              <stop
+                offset="100%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0.05"
+              />
+            </radialGradient>
+            <radialGradient id="saturnShade" cx="0.7" cy="0.65" r="0.6">
+              <stop offset="0%" stop-color="#000" stop-opacity="0.55" />
+              <stop offset="100%" stop-color="#000" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="saturnGlow" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0%" stop-color="var(--warm)" stop-opacity="0.35" />
+              <stop
+                offset="60%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0.12"
+              />
+              <stop
+                offset="100%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0"
+              />
+            </radialGradient>
+            <linearGradient id="ringGrad" x1="0" x2="1" y1="0" y2="0">
+              <stop
+                offset="0%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0"
+              />
+              <stop offset="30%" stop-color="var(--warm)" stop-opacity="0.75" />
+              <stop
+                offset="55%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0.85"
+              />
+              <stop offset="78%" stop-color="var(--warm)" stop-opacity="0.55" />
+              <stop
+                offset="100%"
+                stop-color="var(--saturn-ring)"
+                stop-opacity="0"
+              />
+            </linearGradient>
+          </defs>
+          <circle cx="400" cy="400" r="320" fill="url(#saturnGlow)" />
+          <g
+            style="
+              transform: rotate(var(--ring-tilt, -22deg));
+              transform-origin: 400px 400px;
+            "
+          >
+            <ellipse
+              cx="400"
+              cy="400"
+              rx="340"
+              ry="70"
+              stroke="url(#ringGrad)"
+              stroke-width="3"
+              fill="none"
+            />
+            <ellipse
+              cx="400"
+              cy="400"
+              rx="305"
+              ry="58"
+              stroke="url(#ringGrad)"
+              stroke-width="1.8"
+              fill="none"
+              opacity="0.75"
+            />
+            <ellipse
+              cx="400"
+              cy="400"
+              rx="275"
+              ry="46"
+              stroke="url(#ringGrad)"
+              stroke-width="1.2"
+              fill="none"
+              opacity="0.55"
+            />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Light rays from above -->
+      <svg
+        class="rays"
+        viewBox="0 0 1400 800"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="ray" x1="0.5" y1="0" x2="0.5" y2="1">
+            <stop
+              offset="0%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0.38"
+            />
+            <stop
+              offset="40%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0.18"
+            />
+            <stop
+              offset="80%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0.04"
+            />
+            <stop
+              offset="100%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0"
+            />
+          </linearGradient>
+          <radialGradient id="raySource" cx="0.5" cy="0" r="0.35">
+            <stop
+              offset="0%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0.55"
+            />
+            <stop
+              offset="100%"
+              stop-color="var(--ray-color)"
+              stop-opacity="0"
+            />
+          </radialGradient>
+          <filter id="rayBlur"><feGaussianBlur stdDeviation="22" /></filter>
+        </defs>
+        <rect x="0" y="0" width="1400" height="400" fill="url(#raySource)" />
+        <g filter="url(#rayBlur)">
+          <polygon
+            points="700,-40 380,820 1020,820"
+            fill="url(#ray)"
+            opacity="0.75"
+          />
+          <polygon points="700,-40 560,820 840,820" fill="url(#ray)" />
+          <polygon
+            points="700,-40 660,820 740,820"
+            fill="url(#ray)"
+            opacity="0.9"
+          />
+        </g>
+      </svg>
+
+      <!-- Grid floor -->
+      <div class="genten-horizon"></div>
+      <div class="genten-floor">
+        <div class="genten-floor-grid"></div>
+      </div>
+
+      <!-- Navigation -->
+      <div id="nav-placeholder"></div>
+
+      <!-- Install Guide Container -->
+      <section class="install-container">
+        <div class="install-frame-wrap">
+          <iframe
+            class="install-iframe"
+            src="./docs/Genten_Docker_Setup_Guide.html"
+            title="Genten Installation Guide"
+          ></iframe>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div id="footer-placeholder"></div>
+    </div>
+
+    <script>
+      const TWEAK_DEFAULTS = {
+        saturnScale: 1,
+        saturnOpacity: 0.25,
+        saturnX: 0,
+        saturnY: -2,
+        saturnTilt: -15,
+        gridSize: 30,
+        gridGlow: 1.8,
+        rays: 0.5,
+      }
+
+      const root = document.documentElement
+
+      function applyTweaks(t) {
+        root.style.setProperty("--saturn-scale", t.saturnScale)
+        root.style.setProperty("--saturn-opacity", t.saturnOpacity)
+        root.style.setProperty("--saturn-x", t.saturnX)
+        root.style.setProperty("--saturn-y", t.saturnY)
+        root.style.setProperty("--ring-tilt", t.saturnTilt + "deg")
+        root.style.setProperty("--grid-size", t.gridSize + "px")
+        root.style.setProperty("--grid-glow", t.gridGlow)
+        root.style.setProperty("--rays-opacity", t.rays)
+      }
+
+      const tweaks = {...TWEAK_DEFAULTS}
+      applyTweaks(tweaks)
+    </script>
+
+    <!-- Component loader -->
+    <script src="./components/loader.js"></script>
+  </body>
+</html>
