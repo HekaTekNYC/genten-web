@@ -656,9 +656,15 @@ select.waitlist-input {
   font-family: Geist;
   position: relative;
   z-index: 10;
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 60px auto 0;
-  padding: 0 40px 40px;
+  padding: 0 20px 40px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-wrap {
+    padding: 0 0 40px;
+  }
 }
 .dashboard-wrap::before {
   content: '';
@@ -688,6 +694,7 @@ select.waitlist-input {
     0 0 0 1px #3ad4ff0a,
     0 20px 50px -20px #00000088,
     0 60px 120px -40px #000;
+  width: 100%;
 }
 .dashboard::before {
   content: "";
@@ -1679,8 +1686,8 @@ select.waitlist-input {
 .dashboard-section {
   text-align: center;
   margin: 48px auto 40px;
-  max-width: 1200px;
-  padding: 0 40px;
+  max-width: none;
+  padding: 0;
 }
 
 .dashboard-section h2 {
