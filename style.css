@@ -321,6 +321,47 @@ nav {
   .nav-link:last-child {
     border-bottom: none;
   }
+
+  /* Home page overrides - must come after generic rules */
+  body.home nav {
+    background: none;
+    backdrop-filter: none;
+  }
+
+  body.home .nav-links {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    backdrop-filter: none;
+    border-bottom: none;
+    overflow: visible;
+    max-height: none;
+    padding: 0;
+  }
+
+  body.home .nav-link {
+    align-items: center;
+    vertical-align: middle;
+    width: auto;
+    padding: 0;
+    border-bottom: none;
+    font-size: 16px;
+  }
+
+  body.home .nav-link svg {
+    display: block;
+  }
+
+  body.home .brand {
+    font-size: 18px;
+  }
+
+  body.home .brand-mark {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .nav-link {
@@ -1567,6 +1608,10 @@ select.waitlist-input {
     gap: 24px;
     padding: 32px 24px 40px;
     text-align: center;
+  }
+
+  .nav-link {
+    font-size: 14px;
   }
 }
 
