@@ -1050,6 +1050,7 @@ select.waitlist-input {
   padding: 20px 40px 60px;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
 
 .turntable-heading {
@@ -1229,6 +1230,28 @@ select.waitlist-input {
   background: rgba(58, 212, 255, 0.12);
   border-color: rgba(58, 212, 255, 0.45);
   color: var(--text);
+}
+
+/* Turntable responsive scaling */
+@media (max-width: 1165px) {
+  .turntable-scene {
+    transform: scale(0.9);
+    height: 540px;
+  }
+}
+
+@media (max-width: 768px) {
+  .turntable-scene {
+    transform: scale(0.7);
+    height: 380px;
+  }
+}
+
+@media (max-width: 480px) {
+  .turntable-scene {
+    transform: scale(0.45);
+    height: 240px;
+  }
 }
 
 /* Waitlist confirmation modal */
