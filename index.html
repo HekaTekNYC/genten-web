@@ -36,7 +36,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 40px 0 0 0;
+        margin: 40px 0 120px 0;
+        opacity: 0;
+        animation: btnFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+      }
+
+      @keyframes btnFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
       }
 
       .hero-install-btn {
@@ -52,7 +65,7 @@
         border: 1px solid rgba(255, 255, 255, 0.25);
         box-shadow:
           0 0 0 1px rgba(58, 212, 255, 0.15),
-          0 8px 24px rgba(58, 212, 255, 0.2),
+          0 12px 40px rgba(58, 212, 255, 0.35),
           0 16px 48px rgba(58, 212, 255, 0.15),
           inset 0 1px 0 rgba(255, 255, 255, 0.5);
         text-decoration: none;
@@ -70,13 +83,60 @@
         transform: translateY(-2px);
       }
 
-      .hero-proof-text {
-        text-align: center;
-        font-size: 13px;
-        color: var(--muted);
-        opacity: 0.75;
-        margin: 12px 0 120px 0;
+      .hero-install-btn:active {
+        transform: translateY(0) scale(0.98);
+        box-shadow:
+          0 0 0 1px rgba(58, 212, 255, 0.2),
+          0 8px 24px rgba(58, 212, 255, 0.25),
+          0 12px 32px rgba(58, 212, 255, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
+
+      .btn-time {
+        opacity: 0.65;
         font-weight: 400;
+      }
+
+      /* Video caption and progress bar */
+      .video-container {
+        position: relative;
+      }
+
+      .video-caption {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 16px;
+        padding: 12px 20px;
+        border-radius: 12px;
+        background: rgba(58, 212, 255, 0.04);
+        border: 1px solid rgba(58, 212, 255, 0.15);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        font-size: 14px;
+        color: #c8d0e0;
+        font-weight: 500;
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      .video-caption svg {
+        flex-shrink: 0;
+        color: var(--accent);
+        opacity: 0.8;
+      }
+
+      .video-progress-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
+        width: 0%;
+        transition: width 0.1s linear;
+        border-radius: 0 0 0 16px;
+        box-shadow: 0 0 8px rgba(58, 212, 255, 0.6);
       }
 
       /* Mobile responsive styles */
@@ -86,6 +146,15 @@
           font-size: 16px;
           width: 100%;
           max-width: 340px;
+        }
+
+        .video-caption {
+          font-size: 13px;
+          padding: 10px 16px;
+        }
+
+        .hero-badge-row {
+          flex-wrap: wrap;
         }
       }
     </style>
@@ -145,7 +214,7 @@
         class="saturn"
         aria-hidden="true"
         style="
-          opacity: var(--saturn-opacity, 0.1);
+          opacity: var(--saturn-opacity, 0.12);
           transform: scale(var(--saturn-scale, 1));
           transform-origin: top right;
         "
@@ -329,35 +398,61 @@
           Real-time cost monitoring, budget controls, and a kill switch. All
           from one dashboard.
         </p>
+        <div class="hero-badge-row">
+          <span class="hero-proof-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Self-hosted
+          </span>
+          <span class="hero-proof-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            Docker install
+          </span>
+        </div>
         <div class="hero-cta-container">
           <a href="./install.html" class="hero-install-btn">
-            Install Genten
+            Install Genten&nbsp;&nbsp;<span class="btn-time">(15 min)</span>
           </a>
         </div>
-        <p class="hero-proof-text">Self-hosted • Docker install</p>
 
 
       <!-- Dashboard Section -->
       <section class="dashboard-section">
         <div class="dashboard-wrap">
           <div class="dashboard">
-            <video
-              autoplay
-              muted
-              loop
-              playsinline
-              controls
-              poster="/assets/images/genten-home.png"
-              style="
-                width: 100%;
-                height: auto;
-                display: block;
-                border-radius: 16px;
-              "
-            >
-              <source src="./assets/videos/dashboard.mp4" type="video/mp4">
-              Your browser doesn't support video playback.
-            </video>
+            <div class="video-container">
+              <video
+                id="dashboard-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                controls
+                poster="/assets/images/genten-home.png"
+                style="
+                  width: 100%;
+                  height: auto;
+                  display: block;
+                  border-radius: 16px;
+                "
+              >
+                <source src="./assets/videos/dashboard.mp4" type="video/mp4">
+                Your browser doesn't support video playback.
+              </video>
+              <div class="video-progress-bar"></div>
+            </div>
+            <div class="video-caption">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              Track every API call across OpenClaw, LangChain, n8n, and custom agents
+            </div>
           </div>
         </div>
       </section>
@@ -741,13 +836,13 @@
       // Tweakable defaults — host rewrites this block on save
       const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/ {
         saturnScale: 1,
-        saturnOpacity: 0.25,
+        saturnOpacity: 0.12,
         saturnX: 0,
         saturnY: -2,
         saturnTilt: -15,
         gridSize: 30,
         gridGlow: 1.8,
-        rays: 0.5,
+        rays: 0.28,
         headline: "See every <em>signal</em>,<br/>control every move.",
       } /*EDITMODE-END*/
 
@@ -960,6 +1055,16 @@
       )
 
       document.querySelectorAll(".fade-up").forEach(el => observer.observe(el))
+
+      // Video progress bar
+      const video = document.getElementById('dashboard-video')
+      const progressBar = document.querySelector('.video-progress-bar')
+      if (video && progressBar) {
+        video.addEventListener('timeupdate', () => {
+          const progress = (video.currentTime / video.duration) * 100
+          progressBar.style.width = progress + '%'
+        })
+      }
     </script>
 
     <!-- Component loader for nav and footer -->

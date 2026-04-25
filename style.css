@@ -4,6 +4,7 @@
   --muted: #a8b4cc;
   --accent: #3ad4ff;
   --accent-soft: #6ae2ff;
+  --accent-decorative: #5a9db8;
   --warm: #e8b875;
   --surface: #0a1226;
   --surface-2: #050a18;
@@ -14,11 +15,11 @@
   --bg-mid: #030815;
   --bg-bot: #05102a;
   --grid-halo: #0a1d3d;
-  --grid-dot: #3ad4ff;
+  --grid-dot: #5a9db8;
   --grid-line: #1a6fb8dd;
   --horizon-glow: #0a2a5add;
-  --ray-color: #3ad4ff;
-  --saturn-ring: #3ad4ff;
+  --ray-color: #5a9db8;
+  --saturn-ring: #5a9db8;
   --btn-primary-bg: linear-gradient(180deg, #fff 0%, #d8e4f0 100%);
   --btn-primary-fg: #02050f;
 }
@@ -477,7 +478,7 @@ h1 {
   font-size: clamp(48px, 7.2vw, 100px);
   line-height: 1.02;
   letter-spacing: -0.02em;
-  margin: 26px auto 0;
+  margin: 24px auto 0;
   max-width: 14ch;
   text-wrap: balance;
 }
@@ -489,13 +490,43 @@ h1 em {
   -webkit-text-fill-color: transparent;
 }
 .sub {
-  margin: 22px auto 0;
+  margin: 24px auto 0;
   max-width: 52ch;
   font-size: 17px;
   line-height: 1.65;
   color: var(--muted);
   font-weight: 300;
 }
+
+.hero-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0 0 0;
+}
+
+.hero-proof-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(58, 212, 255, 0.06);
+  border: 1px solid rgba(58, 212, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 13px;
+  color: #c8d0e0;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.hero-proof-badge svg {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
 .cta-row {
   margin: 30px auto 0;
   display: inline-flex;
@@ -1119,10 +1150,10 @@ select.waitlist-input {
   width: 100%;
   height: 100%;
   border-radius: 16px;
-  background: rgba(3, 8, 21, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(58, 212, 255, 0.15);
+  background: rgba(10, 18, 38, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(58, 212, 255, 0.18);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.4),
     inset 0 0 20px rgba(58, 212, 255, 0.03);
@@ -1404,9 +1435,16 @@ select.waitlist-input {
 }
 
 .frameworks-label {
-  font-size: 13px;
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(58, 212, 255, 0.04);
+  border: 1px solid rgba(58, 212, 255, 0.15);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   color: var(--muted);
   margin: 0 0 24px;
   text-transform: uppercase;
@@ -1481,18 +1519,22 @@ select.waitlist-input {
 
 @media (max-width: 480px) {
   .frameworks-pills {
-    gap: 8px;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    gap: 12px;
   }
   .framework-pill {
-    gap: 5px;
-    padding: 6px 10px;
-    font-size: 9px;
-    letter-spacing: 0.06em;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    gap: 8px;
+    padding: 8px 14px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
   }
   .framework-pill-icon {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
   }
 }
 
