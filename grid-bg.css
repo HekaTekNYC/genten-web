@@ -45,15 +45,15 @@
   transform-origin: 50% 0%;
   /* grid lines only */
   background-image:
-    linear-gradient(to right, var(--grid-line, #3af2ffff) 1.5px, transparent 1.5px),
-    linear-gradient(to bottom, var(--grid-line, #3afcffff) 1.5px, transparent 1.5px);
+    linear-gradient(to right, var(--grid-line, #3af2ffff) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line, #3afcffff) 1px, transparent 1px);
   background-size:
-    var(--grid-size, 40px) var(--grid-size, 40px),
-    var(--grid-size, 40px) var(--grid-size, 40px);
+    var(--grid-size, 40px) calc(var(--grid-size, 40px) * 0.82),
+    var(--grid-size, 40px) calc(var(--grid-size, 40px) * 0.82);
   /* semicircular horizon fadeout + curved dome falloff */
   mask-image:
     radial-gradient(
-      ellipse 20% 80% at 50% 100%,
+      ellipse 20% 50% at 50% 100%,
       #000 0%,
       #000 20%,
       transparent 60%

@@ -30,8 +30,136 @@
     />
     <link rel="stylesheet" href="grid-bg.css" />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Hero CTA Styles */
+      .hero-cta-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 40px 0 120px 0;
+        opacity: 0;
+        animation: btnFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+      }
+
+      @keyframes btnFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .hero-install-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 48px;
+        font-size: 17px;
+        font-weight: 600;
+        background: linear-gradient(180deg, #ffffff 0%, #d8e4f0 100%);
+        color: #02050f;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow:
+          0 0 0 1px rgba(58, 212, 255, 0.15),
+          0 12px 40px rgba(58, 212, 255, 0.35),
+          0 16px 48px rgba(58, 212, 255, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+      }
+
+      .hero-install-btn:hover {
+        background: linear-gradient(180deg, #ffffff 0%, #e8f0f8 100%);
+        box-shadow:
+          0 0 0 1px rgba(58, 212, 255, 0.3),
+          0 12px 32px rgba(58, 212, 255, 0.3),
+          0 24px 64px rgba(58, 212, 255, 0.25),
+          inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        transform: translateY(-2px);
+      }
+
+      .hero-install-btn:active {
+        transform: translateY(0) scale(0.98);
+        box-shadow:
+          0 0 0 1px rgba(58, 212, 255, 0.2),
+          0 8px 24px rgba(58, 212, 255, 0.25),
+          0 12px 32px rgba(58, 212, 255, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
+
+      .btn-time {
+        opacity: 0.65;
+        font-weight: 400;
+      }
+
+      /* Video caption and progress bar */
+      .video-container {
+        position: relative;
+      }
+
+      .video-caption {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 16px;
+        padding: 12px 20px;
+        border-radius: 12px;
+        background: rgba(58, 212, 255, 0.04);
+        border: 1px solid rgba(58, 212, 255, 0.15);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        font-size: 14px;
+        color: #c8d0e0;
+        font-weight: 500;
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      .video-caption svg {
+        flex-shrink: 0;
+        color: var(--accent);
+        opacity: 0.8;
+      }
+
+      .video-progress-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
+        width: 0%;
+        transition: width 0.1s linear;
+        border-radius: 0 0 0 16px;
+        box-shadow: 0 0 8px rgba(58, 212, 255, 0.6);
+      }
+
+      /* Mobile responsive styles */
+      @media (max-width: 640px) {
+        .hero-install-btn {
+          padding: 18px 40px;
+          font-size: 16px;
+          width: 100%;
+          max-width: 340px;
+        }
+
+        .video-caption {
+          font-size: 13px;
+          padding: 10px 16px;
+        }
+
+        .hero-badge-row {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
   </head>
-  <body>
+  <body class="home">
     <div class="theme-switcher" role="tablist" aria-label="Color theme">
       <button data-theme="" class="active">
         <span class="swatch" style="background: #3ad4ff; color: #3ad4ff"></span
@@ -86,7 +214,7 @@
         class="saturn"
         aria-hidden="true"
         style="
-          opacity: var(--saturn-opacity, 0.1);
+          opacity: var(--saturn-opacity, 0.12);
           transform: scale(var(--saturn-scale, 1));
           transform-origin: top right;
         "
@@ -193,78 +321,6 @@
         </svg>
       </div>
 
-      <!-- Tweaks panel -->
-      <div id="tweaks-panel" style="display: none">
-        <div class="tw-head">
-          <span>Tweaks</span>
-          <span class="tw-close" id="tw-close">×</span>
-        </div>
-        <div class="tw-body">
-          <label
-            >Saturn size
-            <input
-              type="range"
-              id="tw-saturn-scale"
-              min="0.4"
-              max="1.8"
-              step="0.05"
-            />
-            <span class="tw-val" id="tw-saturn-scale-v"></span>
-          </label>
-          <label
-            >Saturn opacity
-            <input
-              type="range"
-              id="tw-saturn-opacity"
-              min="0"
-              max="1"
-              step="0.05"
-            />
-            <span class="tw-val" id="tw-saturn-opacity-v"></span>
-          </label>
-          <label
-            >Saturn position X
-            <input type="range" id="tw-saturn-x" min="-50" max="20" step="1" />
-            <span class="tw-val" id="tw-saturn-x-v"></span>
-          </label>
-          <label
-            >Saturn position Y
-            <input type="range" id="tw-saturn-y" min="-50" max="20" step="1" />
-            <span class="tw-val" id="tw-saturn-y-v"></span>
-          </label>
-          <label
-            >Ring tilt
-            <input
-              type="range"
-              id="tw-saturn-tilt"
-              min="-45"
-              max="10"
-              step="1"
-            />
-            <span class="tw-val" id="tw-saturn-tilt-v"></span>
-          </label>
-          <label
-            >Grid density (px)
-            <input type="range" id="tw-grid-size" min="14" max="48" step="2" />
-            <span class="tw-val" id="tw-grid-size-v"></span>
-          </label>
-          <label
-            >Grid glow
-            <input type="range" id="tw-grid-glow" min="0" max="1" step="0.05" />
-            <span class="tw-val" id="tw-grid-glow-v"></span>
-          </label>
-          <label
-            >Light rays
-            <input type="range" id="tw-rays" min="0" max="1" step="0.05" />
-            <span class="tw-val" id="tw-rays-v"></span>
-          </label>
-          <label
-            >Headline text
-            <input type="text" id="tw-headline" />
-          </label>
-        </div>
-      </div>
-
       <!-- Light rays from above -->
       <svg
         class="rays"
@@ -333,126 +389,73 @@
         <div class="genten-floor-grid"></div>
       </div>
 
-      <nav>
-        <a href="/" class="brand" style="text-decoration:none;color:inherit;">
-          <span class="brand-mark">
-            <svg
-              role="img"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-label="Genten"
-            >
-              <title>Saturn</title>
-              <path
-                fill="currentColor"
-                d="M19.039 11.459c.001.015.022.244.03.407.006.113 0 .29 0 .3.003 0 .029.023.03.024 1.428 1.17 2.943 2.767 3.204 3.94.073.325.056.618-.072.868-.152.293-.439.503-.834.638-2.046.7-6.925-.642-10.907-2.609-2.845-1.406-5.342-3.081-7.032-4.719-1.57-1.523-1.995-2.71-1.59-3.427.155-.271.42-.472.776-.609 1.299-.507 3.788-.152 6.239.579-1.16.866-1.968 2.034-2.342 3.202l-.001.007a.051.051 0 0 1-.001.006c-.115 1.07 1.434 2.47 3 3.25-.002-.006.084.032.084.026-.002-.006-.015-.109-.017-.113-.366-2.66 1.648-6.64 3.765-7.513.136-.056.254-.09.27-.095l-.273-.027c-.074-.006-.148-.013-.228-.015a7.464 7.464 0 0 0-.272-.01 6.443 6.443 0 0 0-3.4.892C5.378 5.057 2.383 4.892 1.13 5.31c-.497.167-.833.418-1 .751-.174.35-.175.79-.002 1.306.57 1.704 3.058 4.032 6.211 6.099.457 2.407 2.615 4.875 5.703 5.204l.142.015a.278.278 0 0 1 .05 0 6.618 6.618 0 0 0-.173-.132c-.955-.736-1.813-1.949-2.107-3l.185.093.143.07c4.985 2.465 10.215 3.72 12.53 2.947.519-.174.9-.418 1.075-.768.167-.335.139-.78-.029-1.278-.436-1.3-2.304-3.284-4.675-5.052a5.003 5.003 0 0 0-.145-.107"
-              />
-            </svg>
-          </span>
-          Genten
-        </a>
-        <button
-          class="nav-hamburger"
-          id="nav-hamburger"
-          aria-label="Toggle menu"
-          onclick="
-            this.classList.toggle('open');
-            document.getElementById('nav-links').classList.toggle('open');
-          "
-        >
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-        </button>
-        <div class="nav-links" id="nav-links">
-          <a href="docs.html" class="nav-link">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-              <path
-                d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
-              />
-            </svg>
-            Docs
-          </a>
-          <a href="https://github.com/HekaTekNYC" class="nav-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
-              />
-            </svg>
-            GitHub
-          </a>
-        </div>
-      </nav>
+      <!-- Navigation loaded from components/nav.html -->
+      <div id="nav-placeholder"></div>
 
       <section class="hero">
-        <div class="eyebrow">
-          <span class="pulse"></span>
-          <span>Public Beta · v0.1.1</span>
-        </div>
         <h1>See every <em>signal</em>,<br />control every move.</h1>
         <p class="sub">
           Real-time cost monitoring, budget controls, and a kill switch. All
           from one dashboard.
         </p>
-        <div class="cta-row" id="waitlist">
-          <form class="waitlist-form" onsubmit="handleWaitlistSubmit(event)">
-            <div class="waitlist-row">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                required
-                class="waitlist-input"
-                id="waitlist-email"
-              />
-              <button type="submit" class="btn btn-primary">
-                Get Early Access
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path
-                    d="M2 10L10 2M10 2H4.5M10 2V7.5"
-                    stroke="currentColor"
-                    stroke-width="1.4"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </button>
-            </div>
-            <a href="/install/" class="btn-secondary-install">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M8 10h8M8 14h5" />
-              </svg>
-              Docker install
-            </a>
-          </form>
+        <div class="hero-badge-row">
+          <span class="hero-proof-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Self-hosted
+          </span>
+          <span class="hero-proof-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            Docker install
+          </span>
         </div>
-        <button
-          class="scroll-chevron"
-          aria-label="Scroll down"
-          onclick="document.querySelector('.dashboard-section').scrollIntoView({behavior:'smooth'})"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </button>
+        <div class="hero-cta-container">
+          <a href="./install.html" class="hero-install-btn">
+            Install Genten&nbsp;&nbsp;<span class="btn-time">(15 min)</span>
+          </a>
+        </div>
+
+
+      <!-- Dashboard Section -->
+      <section class="dashboard-section">
+        <div class="dashboard-wrap">
+          <div class="dashboard">
+            <div class="video-container">
+              <video
+                id="dashboard-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                controls
+                poster="/assets/images/genten-home.png"
+                style="
+                  width: 100%;
+                  height: auto;
+                  display: block;
+                  border-radius: 16px;
+                "
+              >
+                <source src="./assets/videos/dashboard.mp4" type="video/mp4">
+                Your browser doesn't support video playback.
+              </video>
+              <div class="video-progress-bar"></div>
+            </div>
+            <div class="video-caption">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              Track every API call across OpenClaw, LangChain, n8n, and custom agents
+            </div>
+          </div>
+        </div>
+      </section>
 
         <!-- Frameworks -->
         <div class="frameworks">
@@ -558,223 +561,117 @@
         </div>
       </section>
 
-      <!-- Dashboard Section -->
-      <section class="dashboard-section">
-        <p class="dashboard-eyebrow">Live Dashboard Preview</p>
-        <div class="dashboard-wrap">
-          <div class="dashboard">
-            <img
-              src="/assets/images/genten-home.png"
-              alt="Genten Dashboard"
-              style="
-                width: 100%;
-                height: auto;
-                display: block;
-                border-radius: 16px;
-              "
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- Features Section -->
-      <section class="integrations-section fade-up">
-        <h2>Built for what matters.</h2>
-        <p class="section-sub">
-          Three things that keep AI agent projects from going sideways: cost,
-          control, and budget. We built exactly those.
-        </p>
-
-        <!-- Features -->
-        <section class="features">
-          <div class="features-inner">
-            <div class="feature-card fade-up">
-              <div class="feature-card-header">
-                <div class="feature-card-icon">
-                  <svg
-                    width="28"
-                    height="28"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"
-                    />
-                    <path
-                      d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"
-                    />
-                    <path d="m2 16 6 6" />
-                    <circle cx="16" cy="9" r="2.9" />
-                    <circle cx="6" cy="5" r="3" />
-                  </svg>
-                </div>
-                <h3>Real Time Costs</h3>
-              </div>
-              <p>
-                Watch every token, every API call, every dollar as agents work.
-                No surprises at end-of-month.
-              </p>
-            </div>
-            <div class="feature-card fade-up">
-              <div class="feature-card-header">
-                <div class="feature-card-icon">
-                  <svg
-                    width="28"
-                    height="28"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <rect width="20" height="12" x="2" y="6" rx="6" ry="6" />
-                    <circle cx="16" cy="12" r="2" />
-                  </svg>
-                </div>
-                <h3>Agent Kill Switch</h3>
-              </div>
-              <p>
-                Stop all agents with one click. No SSH, no docker exec, no
-                terminal. Just hit the button.
-              </p>
-            </div>
-            <div class="feature-card fade-up">
-              <div class="feature-card-header">
-                <div class="feature-card-icon">
-                  <svg
-                    width="28"
-                    height="28"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <line x1="4" y1="21" x2="4" y2="14" />
-                    <line x1="4" y1="10" x2="4" y2="3" />
-                    <line x1="12" y1="21" x2="12" y2="12" />
-                    <line x1="12" y1="8" x2="12" y2="3" />
-                    <line x1="20" y1="21" x2="20" y2="16" />
-                    <line x1="20" y1="12" x2="20" y2="3" />
-                    <line x1="1" y1="14" x2="7" y2="14" />
-                    <line x1="9" y1="8" x2="15" y2="8" />
-                    <line x1="17" y1="16" x2="23" y2="16" />
-                  </svg>
-                </div>
-                <h3>Budget Autopilot</h3>
-              </div>
-              <p>
-                Set a daily limit. When you hit it, we'll either pause the agent
-                or just notify you. Your choice.
-              </p>
-            </div>
-          </div>
-        </section>
-      </section>
-
-      <!-- Spending Section + Carousel -->
-      <section class="dashboard-section fade-up">
+      <!-- 3D Turntable Carousel -->
+      <section class="turntable-section fade-up">
         <h2>Your single source of truth.</h2>
         <p class="section-sub">
           Break down spend by agent, model, and time period. Know exactly where
           your budget is going before it's gone.
         </p>
-      </section>
-
-      <!-- 3D Turntable Carousel -->
-      <section class="turntable-section fade-up">
         <div class="turntable-controls-row">
-          <button class="turntable-nav-btn" id="turntable-prev" aria-label="Previous">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          <button
+            class="turntable-nav-btn"
+            id="turntable-prev"
+            aria-label="Previous"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
           </button>
           <div class="turntable-scene">
-          <div class="turntable" id="turntable">
-            <div class="turntable-card" data-pos="0">
-              <div class="turntable-face">
-                <img
-                  src="/assets/images/spending.png"
-                  alt="Spending Dashboard"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-                    border-radius: 16px;
-                    display: block;
-                    background: #030815;
-                  "
-                />
-              </div>
-            </div>
-            <div class="turntable-card" data-pos="1">
-              <div class="turntable-face">
-                <div class="turntable-placeholder">
-                  <svg
-                    width="36"
-                    height="36"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                  </svg>
-                  <span>Cost Monitor</span>
+            <div class="turntable" id="turntable">
+              <div class="turntable-card" data-pos="0">
+                <div class="turntable-face">
+                  <img
+                    src="/assets/images/spending.png"
+                    alt="Spending Dashboard"
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      object-fit: contain;
+                      border-radius: 16px;
+                      display: block;
+                      background: #030815;
+                    "
+                  />
                 </div>
               </div>
-            </div>
-            <div class="turntable-card" data-pos="2">
-              <div class="turntable-face">
-                <div class="turntable-placeholder">
-                  <svg
-                    width="36"
-                    height="36"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <rect width="20" height="12" x="2" y="6" rx="6" />
-                    <circle cx="16" cy="12" r="2" />
-                  </svg>
-                  <span>Kill Switch</span>
+              <div class="turntable-card" data-pos="1">
+                <div class="turntable-face">
+                  <img
+                    src="/assets/images/killswitch.png"
+                    alt="Kill Switch Dashboard"
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      object-fit: contain;
+                      border-radius: 16px;
+                      display: block;
+                      background: #030815;
+                    "
+                  />
                 </div>
               </div>
-            </div>
-            <div class="turntable-card" data-pos="3">
-              <div class="turntable-face">
-                <div class="turntable-placeholder">
-                  <svg
-                    width="36"
-                    height="36"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.8-1-2.5V5z"
-                    />
-                  </svg>
-                  <span>Budgets</span>
+              <div class="turntable-card" data-pos="2">
+                <div class="turntable-face">
+                  <img
+                    src="/assets/images/workflow.png"
+                    alt="Workflow Dashboard"
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      object-fit: contain;
+                      border-radius: 16px;
+                      display: block;
+                      background: #030815;
+                    "
+                  />
+                </div>
+              </div>
+              <div class="turntable-card" data-pos="3">
+                <div class="turntable-face">
+                  <img
+                    src="/assets/images/briefing.png"
+                    alt="Briefing Dashboard"
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      object-fit: contain;
+                      border-radius: 16px;
+                      display: block;
+                      background: #030815;
+                    "
+                  />
                 </div>
               </div>
             </div>
           </div>
-          </div>
-          <button class="turntable-nav-btn" id="turntable-next" aria-label="Next">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <button
+            class="turntable-nav-btn"
+            id="turntable-next"
+            aria-label="Next"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
           </button>
         </div>
         <div class="turntable-dots" id="turntable-dots">
@@ -785,59 +682,12 @@
         </div>
       </section>
 
-      <footer class="footer">
-        <a href="/" class="footer-brand" style="text-decoration:none;color:inherit;">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            style="flex-shrink: 0"
-          >
-            <path
-              fill="currentColor"
-              d="M19.039 11.459c.001.015.022.244.03.407.006.113 0 .29 0 .3.003 0 .029.023.03.024 1.428 1.17 2.943 2.767 3.204 3.94.073.325.056.618-.072.868-.152.293-.439.503-.834.638-2.046.7-6.925-.642-10.907-2.609-2.845-1.406-5.342-3.081-7.032-4.719-1.57-1.523-1.995-2.71-1.59-3.427.155-.271.42-.472.776-.609 1.299-.507 3.788-.152 6.239.579-1.16.866-1.968 2.034-2.342 3.202l-.001.007a.051.051 0 0 1-.001.006c-.115 1.07 1.434 2.47 3 3.25-.002-.006.084.032.084.026-.002-.006-.015-.109-.017-.113-.366-2.66 1.648-6.64 3.765-7.513.136-.056.254-.09.27-.095l-.273-.027c-.074-.006-.148-.013-.228-.015a7.464 7.464 0 0 0-.272-.01 6.443 6.443 0 0 0-3.4.892C5.378 5.057 2.383 4.892 1.13 5.31c-.497.167-.833.418-1 .751-.174.35-.175.79-.002 1.306.57 1.704 3.058 4.032 6.211 6.099.457 2.407 2.615 4.875 5.703 5.204l.142.015a.278.278 0 0 1 .05 0 6.618 6.618 0 0 0-.173-.132c-.955-.736-1.813-1.949-2.107-3l.185.093.143.07c4.985 2.465 10.215 3.72 12.53 2.947.519-.174.9-.418 1.075-.768.167-.335.139-.78-.029-1.278-.436-1.3-2.304-3.284-4.675-5.052a5.003 5.003 0 0 0-.145-.107"
-            />
-          </svg>
-          Genten
-        </a>
-        <div class="footer-center">
-          <span class="footer-proof-item">Self-hosted</span>
-          <span class="proof-divider">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-          </span>
-          <span class="footer-proof-item">Beta Release</span>
-          <span class="proof-divider">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-          </span>
-          <span class="footer-proof-item">Updates rolling out</span>
-        </div>
-        <span class="footer-copyright">
-          <a href="mailto:help@genten.io" class="footer-contact">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              style="flex-shrink: 0"
-            >
-              <path
-                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-              />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-            Contact
-          </a>
-          © 2026 HekaTek LLC
-        </span>
-      </footer>
+      <!-- Footer loaded from components/footer.html -->
+      <div id="footer-placeholder"></div>
     </div>
 
     <!-- Source selection modal -->
+    <!-- WAITLIST DISABLED 2026-04-25
     <div
       class="waitlist-modal-overlay"
       id="source-modal-overlay"
@@ -869,7 +719,6 @@
       </div>
     </div>
 
-    <!-- Waitlist confirmation modal -->
     <div
       class="waitlist-modal-overlay"
       id="waitlist-modal-overlay"
@@ -889,7 +738,9 @@
         </div>
       </div>
     </div>
+    -->
 
+    <!-- WAITLIST DISABLED 2026-04-25
     <script>
       let pendingEmail = ""
 
@@ -978,17 +829,20 @@
         const modal = document.getElementById("waitlist-modal-overlay")
         modal.classList.remove("show")
       }
+    </script>
+    -->
 
+    <script>
       // Tweakable defaults — host rewrites this block on save
       const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/ {
         saturnScale: 1,
-        saturnOpacity: 0.25,
+        saturnOpacity: 0.12,
         saturnX: 0,
         saturnY: -2,
         saturnTilt: -15,
-        gridSize: 18,
+        gridSize: 30,
         gridGlow: 1.8,
-        rays: 0.5,
+        rays: 0.28,
         headline: "See every <em>signal</em>,<br/>control every move.",
       } /*EDITMODE-END*/
 
@@ -1114,36 +968,74 @@
         const cards = document.querySelectorAll(".turntable-card")
         const scene = document.querySelector(".turntable-scene")
         let current = 0
+        let currentRotation = 0
         let autoTimer = null
+        let restartTimer = null
 
         function rotateTo(index) {
-          current = ((index % 4) + 4) % 4
-          turntable.style.transform = `translate(-50%, -50%) rotateY(${-current * 90}deg)`
+          const targetIndex = ((index % 4) + 4) % 4
+          const targetAngle = -targetIndex * 90
+
+          // Calculate shortest angular path
+          let delta = targetAngle - (currentRotation % 360)
+          if (delta > 180) delta -= 360
+          if (delta < -180) delta += 360
+
+          currentRotation += delta
+          current = targetIndex
+
+          turntable.style.transform = `translate(-50%, -50%) rotateY(${currentRotation}deg)`
           dots.forEach((d, i) => d.classList.toggle("active", i === current))
         }
 
         function startAuto() {
-          autoTimer = setInterval(() => rotateTo(current + 1), 4000)
+          clearInterval(autoTimer)
+          autoTimer = setInterval(() => rotateTo(current + 1), 6000)
         }
 
         function stopAuto() {
           clearInterval(autoTimer)
+          clearTimeout(restartTimer)
           autoTimer = null
+          restartTimer = null
         }
 
         cards.forEach((card, i) => {
-          card.addEventListener("click", () => { stopAuto(); rotateTo(i); startAuto() })
+          card.addEventListener("click", () => {
+            stopAuto()
+            rotateTo(i)
+            restartTimer = setTimeout(() => startAuto(), 8000)
+          })
         })
 
         dots.forEach((dot, i) => {
-          dot.addEventListener("click", () => { stopAuto(); rotateTo(i); startAuto() })
+          dot.addEventListener("click", () => {
+            stopAuto()
+            rotateTo(i)
+            restartTimer = setTimeout(() => startAuto(), 8000)
+          })
         })
 
-        document.getElementById("turntable-prev").addEventListener("click", () => { stopAuto(); rotateTo(current - 1); startAuto() })
-        document.getElementById("turntable-next").addEventListener("click", () => { stopAuto(); rotateTo(current + 1); startAuto() })
+        document
+          .getElementById("turntable-prev")
+          .addEventListener("click", () => {
+            stopAuto()
+            rotateTo(current - 1)
+            restartTimer = setTimeout(() => startAuto(), 8000)
+          })
+        document
+          .getElementById("turntable-next")
+          .addEventListener("click", () => {
+            stopAuto()
+            rotateTo(current + 1)
+            restartTimer = setTimeout(() => startAuto(), 8000)
+          })
 
         scene.addEventListener("mouseenter", stopAuto)
-        scene.addEventListener("mouseleave", startAuto)
+        scene.addEventListener("mouseleave", () => {
+          stopAuto()
+          startAuto()
+        })
 
         startAuto()
       })()
@@ -1163,6 +1055,19 @@
       )
 
       document.querySelectorAll(".fade-up").forEach(el => observer.observe(el))
+
+      // Video progress bar
+      const video = document.getElementById('dashboard-video')
+      const progressBar = document.querySelector('.video-progress-bar')
+      if (video && progressBar) {
+        video.addEventListener('timeupdate', () => {
+          const progress = (video.currentTime / video.duration) * 100
+          progressBar.style.width = progress + '%'
+        })
+      }
     </script>
+
+    <!-- Component loader for nav and footer -->
+    <script src="./components/loader.js"></script>
   </body>
 </html>
