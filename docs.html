@@ -95,7 +95,7 @@
       .docs-title {
         font-family: "Instrument Serif", serif;
         font-weight: 400;
-        font-size: clamp(32px, 5vw, 48px);
+        font-size: clamp(40px, 6vw, 64px);
         line-height: 1.1;
         letter-spacing: -0.02em;
         margin-bottom: 12px;
@@ -586,7 +586,6 @@
       <div id="nav-placeholder"></div>
 
       <section class="docs-header">
-        <div class="docs-eyebrow">DOCUMENTATION</div>
         <h1 class="docs-title">Get connected in minutes.</h1>
         <p class="docs-subtitle">
           Every guide walks you from zero to live monitoring — installation,
@@ -598,14 +597,6 @@
         <div class="guide-pills">
           <button
             class="guide-pill active"
-            data-gem="sapphire"
-            data-guide="docs/Genten_Docker_Setup_Guide.html"
-          >
-            <span class="guide-pill-dot"></span>
-            Genten Install
-          </button>
-          <button
-            class="guide-pill"
             data-gem="aqua"
             data-guide="docs/Genten_OpenClaw_Setup_Guide.html"
           >
@@ -699,7 +690,7 @@
       }
 
       iframe.addEventListener("load", hideLoader)
-      iframe.src = "docs/Genten_Docker_Setup_Guide.html"
+      iframe.src = "docs/Genten_OpenClaw_Setup_Guide.html"
 
       pills.forEach(pill => {
         pill.addEventListener("click", () => {
