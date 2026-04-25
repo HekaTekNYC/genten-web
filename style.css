@@ -663,7 +663,7 @@ select.waitlist-input {
 
 @media (max-width: 768px) {
   .dashboard-wrap {
-    padding: 0 8px 40px;
+    padding: 0 0 40px;
   }
 }
 .dashboard-wrap::before {
@@ -694,6 +694,7 @@ select.waitlist-input {
     0 0 0 1px #3ad4ff0a,
     0 20px 50px -20px #00000088,
     0 60px 120px -40px #000;
+  width: 100%;
 }
 .dashboard::before {
   content: "";
