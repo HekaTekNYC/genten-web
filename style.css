@@ -994,6 +994,7 @@ select.waitlist-input {
   align-items: center;
   gap: 6px;
   color: var(--muted);
+  opacity: 0.6;
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -1558,6 +1559,14 @@ select.waitlist-input {
   .features-inner {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 24px 40px;
+    text-align: center;
   }
 }
 
